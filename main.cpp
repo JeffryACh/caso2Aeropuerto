@@ -9,18 +9,17 @@
 #include <string>
 #include <thread>
 #include <chrono>
-#include "claseHilos.cpp"
+#include "validaciones.cpp"
 
 using namespace std;
 
+const string PAISES[15] = {"CRC", "USA", "ESP", "COL", "PAN", "PER", "MEX", "BRA", "ARG", "CHI", "URU", "PAR", "ECU", "BOL", "VEN"};
+const string NOMBRES[15] = {"Jeffry", "Andres", "Juan", "Pedro", "Maria", "Jose", "Luis", "Carlos", "Ana", "Sofia", "Luisa", "Fernanda", "Fernando", "Jorge", "Javier"};
+const string SEXO[2] = {"M", "F"};
+const string CONTENIDO[20] = {"Pistola", "Cuchillo", "Explosivos", "Quimicos peligrosos", "Drogas", "Ropa", "Zapatos", "Laptop", "Tablet", "Audifonos", "Cargador", "Billetera", "Dinero", "Pasaporte", "Maquillaje", "Cepillo de dientes", "Cepillo de cabello", "Cuaderno", "Libro", "Lapicero"};
+const int MAXIMA_EDAD = 75;
+const int MINIMA_EDAD = 16;
+
 int main(){
-    MyThread myThread; // Se crea una instancia de la clase MyThread
-
-    myThread.start(); // Se inicia el hilo
-
-    this_thread::sleep_for(chrono::milliseconds(5000)); // Se duerme el hilo principal por 5 segundo
-
-    cout << "Hello from main!" << endl; // Se imprime un mensaje desde el hilo principal
-
     return 0;
 }
