@@ -20,6 +20,15 @@ const string CONTENIDO[20] = {"Pistola", "Cuchillo", "Explosivos", "Quimicos pel
 const int MAXIMA_EDAD = 75;
 const int MINIMA_EDAD = 16;
 
+/*
+    * Funcion que genera un codigo de pasaporte aleatorio
+    * @return string codigo de pasaporte
+
+    * Hay que generar pasageros aleatorios
+    * Hay que generar maletas aleatorias
+    * Hay que generar hilos aleatorios
+*/
+
 int main(){
     return 0;
 }
