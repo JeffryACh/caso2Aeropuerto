@@ -18,15 +18,15 @@
         "minTiempo" : 20,
         "maxTiempo" : 70
     },
-    "almacenamientoDeMaletas":{
+    "almacenamientoDeMaletas": {
         "minTiempo" : 2,
         "maxTiempo" : 5
     },
-    "resepcionDeEquipaje":{
+    "resepcionDeEquipaje": {
         "minTiempo" : 3,
         "maxTiempo" : 7
     },
-    "entrarAlAvion":{
+    "entrarAlAvion": {
         "minTiempo" : 2,
         "maxTiempo" : 3
     },
