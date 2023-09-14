@@ -1,49 +1,54 @@
 {
-    "configuracion": {
-        "tiempo_simulacion": "24 horas",
-        "rango_cantidad_pasajeros": 15,
-        "rango_cantidad_maletas_por_pasajero": 1,
-        "rango_velocidad_revision_seguridad": [5, 10],
-        "rango_velocidad_embarque": [3, 6]
+    "tiempoSimulacionHora": 20000,
+    "minHora" : 20,
+    "maxHora" : 230,
+    "retencion" : 0.5, 
+    "carcel" : 0.08,
+    "aduanaPersonas": {
+        "minTiempo" : 20,
+        "ValidarPasaporte": [true, false],
+        "maxTiempo" : 120
     },
-    "datos_simulacion": {
-        "tiempos_ocurrencia_eventos": {
-            "tiempo_en_la_Entrada": 10,
-            "tiempo_aduanas": 20,
-            "tiempo_en_lobby": 30,
-            "tiempo_almacen_maletas": 30,
-            "tiempo_en_entrar_al_avion": 5
-        },
-        "volumen_pasajeros": {
-            "Numero_Total_de_pasajeros" : 15
-        }
+    "aduanaMaletas" : {
+        "minTiempo" : 3,
+        "ValidarContenidoMaleta": [true, false],
+        "maxTiempo" : 12
     },
-    "Objetos_Structs_y_Demas_Datos": {
-        "Strcuts":{
-            "Pasaporte": {
-                "codigo": "crcjef21xxxxxx",
-                "Nacionalidad": "CRC",
-                "Sexo": "M"
-                },
-            "Maleta":{
-                "Peso": 10,
-                "Descripcion": "Maleta de mano",
-                "Contenido": ["Pistola", "Cuchillo", "Explosivos", "Quimicos peligrosos", "Drogas", "Ropa", "Zapatos", "Laptop", "Tablet", "Audifonos", "Cargador", "Billetera", "Dinero", "Pasaporte", "Maquillaje", "Cepillo de dientes", "Cepillo de cabello", "Cuaderno", "Libro", "Lapicero"]
-            },
-        "Clases": {
-            "Pasajero": {
-                "Maleta": 1,
-                "Pasaporte": 1,
-                "Edad": [16,75],
-                "Nacionalidad": ["CRC", "USA", "ESP", "COL", "PAN", "PER", "MEX", "BRA", "ARG", "CHI", "URU", "PAR", "ECU", "BOL", "VEN"],
-                "Sexo": ["M", "F"],
-                "Nombre": ["Jeffry", "Andres", "Juan", "Pedro", "Maria", "Jose", "Luis", "Carlos", "Ana", "Sofia", "Luisa", "Fernanda", "Fernando", "Jorge", "Javier"]
-                }
-            }
-        }
+    "lobbyEspera" : {
+        "minTiempo" : 20,
+        "maxTiempo" : 70
     },
-    "Funciones_de_las_Aduanas":{
-        "Validar_pasaporte": [true, false],
-        "Validar_contenido_de_la_maleta": [true, false]
+    "almacenamientoDeMaletas":{
+        "minTiempo" : 2,
+        "maxTiempo" : 5
+    },
+    "resepcionDeEquipaje":{
+        "minTiempo" : 3,
+        "maxTiempo" : 7
+    },
+    "entrarAlAvion":{
+        "minTiempo" : 2,
+        "maxTiempo" : 3
+    },
+    "maleta" : {
+        "peso" : 10,
+        "cantidadMaletasPorPersona" : 1,
+        "cantMaletasPorVagon" : 5,
+        "cantidadVagones" : 3,
+        "contenidoDeLasMaletas" : ["Pistola", "Cuchillo", "Explosivos", "Quimicos peligrosos", "Drogas", "Ropa", "Zapatos", "Laptop", "Tablet", "Audifonos", "Cargador", "Billetera", "Dinero", "Pasaporte", "Maquillaje", "Cepillo de dientes", "Cepillo de cabello", "Cuaderno", "Libro", "Lapicero"]
+    },
+    "pasaporte": {
+        "codigo": "crcjef21xxxxxx",
+        "nacionalidad": ["CRC", "USA", "ESP", "COL", "PAN", "PER", "MEX", "BRA", "ARG", "CHI", "URU", "PAR", "ECU", "BOL", "VEN"],
+        "sexo": ["M", "F"]
+    },
+    "pasajero": {
+        "minEdad" : 16,
+        "maxEdad" : 75,
+        "nacionalidad" : ["CRC", "USA", "ESP", "COL", "PAN", "PER", "MEX", "BRA", "ARG", "CHI", "URU", "PAR", "ECU", "BOL", "VEN"],
+        "sexo" : ["M", "F"],
+        "nombre" : ["Jeffry", "Andres", "Juan", "Pedro", "Maria", "Jose", "Luis", "Carlos", "Ana", "Sofia", "Luisa", "Fernanda", "Fernando", "Jorge", "Javier"],
+        "maleta" : 1,
+        "pasaporte" : 1
     }
 }
