@@ -45,6 +45,11 @@ class Pasajero{
     
     // Metodos
     public:
+    /*
+        Funcion que muestra los datos del pasajero
+        Parametros: ninguno
+        Retorno: void
+    */
         void mostrarDatos(){
             cout << "Nombre: " << nombre << endl;
             cout << "Edad: " << edad << endl;

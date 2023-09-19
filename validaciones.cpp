@@ -4,6 +4,11 @@
 
 using namespace std;
 
+/*
+    Funcion que valida que el codigo de pasaporte sea correcto
+    Parametros: string pCodigo, string pPais, string pNombre, int pEdad
+    Retorno: bool
+*/
 bool validarCodigoPasaporte(string pCodigo, string pPais, string pNombre, int pEdad){
     if(pCodigo.length() != 11){
         return false;
@@ -30,6 +35,11 @@ bool validarCodigoPasaporte(string pCodigo, string pPais, string pNombre, int pE
     return true;
 }
 
+/*
+    Funcion que valida que el contenido de la maleta sea correcto
+    Parametros: string pContenido[]
+    Retorno: bool
+*/
 bool validarContenidoMaleta(string pContenido[]){
     for (int i = 0; i < 5; i++){
         if(pContenido[i] == "Pistola" || pContenido[i] == "Cuchillo" || pContenido[i] == "Explosivos" || pContenido[i] == "Quimicos peligrosos" || pContenido[i] == "Drogas"){
