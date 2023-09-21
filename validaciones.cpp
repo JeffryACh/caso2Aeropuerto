@@ -1,3 +1,10 @@
+/*
+    * Caso2: Aeropuerto
+    * Authors: Jeffry Araya Ch y Andres Quiros P.
+    * Created on: 06/09/2023 09:00
+    * Last modified on: 10/09/2021 15:35
+*/
+
 #include <iostream>
 #include <string>
 #include "claseHilos.cpp"
