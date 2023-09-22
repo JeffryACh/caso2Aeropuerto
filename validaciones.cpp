@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <string>
-#include "claseHilos.cpp"
+#include "clasePasajeros.cpp"
 
 using namespace std;
 

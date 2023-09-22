@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <thread>
+#include <vector>
 
 using namespace std;
 
@@ -137,9 +138,9 @@ class Pasajero{
         */
         string getContenidoMaleta(){
             string contenido = "";
-            for (int i = 0; i < sizeof(maleta.contenido); i++)
+            for (auto it = maleta.contenido.begin(); it != maleta.contenido.end(); ++it)
             {
-                contenido += maleta.contenido[i];
+                contenido += *it;
                 contenido += ", ";
             }
             return contenido;
