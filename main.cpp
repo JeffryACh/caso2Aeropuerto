@@ -72,7 +72,7 @@ Pasajero generarUnPasajero(){
     int edad = rand() % (MAXIMA_EDAD - MINIMA_EDAD + 1) + MINIMA_EDAD;
     string nacionalidad = PAISES[rand() % 15];
     string sexo = SEXO[rand() % 2];
-    int ruletaCodigo = rand() % 1; // Si sale 1 el codigo sera erroneo y si sale 0 sera correcto
+    int ruletaCodigo = rand() % 2; // Si sale 1 el codigo sera erroneo y si sale 0 sera correcto
     string codigoPasaporte;
     if (ruletaCodigo == 1){
         codigoPasaporte = generadorDePasaportesErroneos(nacionalidad, nombre, edad);
@@ -96,11 +96,11 @@ Pasajero generarUnPasajero(){
 int main(){
     std::vector<Pasajero> pasajeros;
     
-    for (int i = 0; i < 10; i++){
+    for (int i = 0; i < 5; i++){
         pasajeros.push_back(generarUnPasajero());
     }
 
-    for (int i = 0; i < 10; i++){
+    for (int i = 0; i < 5; i++){
         pasajeros[i].mostrarDatos();
         cout << endl;
         cout << "Contenido de la maleta: " << pasajeros[i].getContenidoMaleta() << endl;

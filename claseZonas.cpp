@@ -16,6 +16,7 @@ class Zonas{
     private:
         int capacidad;
         int cantidadPersonas;
+        int cantidadMaletas;
 
     // Constructor
     public:
@@ -26,9 +27,10 @@ class Zonas{
             - cantidadPersonas: int que representa la cantidad de personas en la zona
         Retorno: void
         */
-        Zonas(int capacidad, int cantidadPersonas){
+        Zonas(int capacidad, int cantidadPersonas, int cantidadMaletas){
             this->capacidad = capacidad;
             this->cantidadPersonas = cantidadPersonas;
+            this->cantidadMaletas = cantidadMaletas;
         }
 
         /*
@@ -47,6 +49,15 @@ class Zonas{
         */
         int getCantidadPersonas(){
             return this->cantidadPersonas;
+        }
+
+        /*
+        Funccion que retorna la cantidad de maletas en la zona
+        Parametros: void
+        Retorno: int
+        */
+        int getCantidadMaletas(){
+            return this->cantidadMaletas;
         }
 
         /*
