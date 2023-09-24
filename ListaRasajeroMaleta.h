@@ -30,18 +30,20 @@ public:
     int  largoLista();
     // Explicacion:
     //
-    ListaDoblePasajero * buscarPasaporte(int pasaporte);
+    ListaDoblePasajero * buscarPasaporte(string pasaporte);
     // Explicacion:
     //
     void mostrar() ;
     // Explicacion:
     //
-    void Borrar(int pasaporte);
+    void Borrar(string pasaporte);
     // Explicacion:
     //
     bool listaVacia(){return primerNodo=nullptr;}
     // Explicacion:
     //  Este metodo se encarga de validar si la lista doble se encuentra vacia o no se encuentra vacia.
+
+
 };
 
 
@@ -52,7 +54,7 @@ public:
      string colorMaleta;
      listaDobleMaleta*siguiente;
      listaDobleMaleta* anterior;
-     listaDobleMaleta *primerNodo;
+     listaDobleMaleta *segundoNodo;
      listaDobleMaleta(string contMaleta,string colorMaleta){
          this->contMaleta=contMaleta;
          this->colorMaleta=colorMaleta;
@@ -67,7 +69,7 @@ public:
      int  largoLista();
      // Explicacion:
      //
-     ListaDoblePasajero * buscarMaleta(string colorMaleta);
+     listaDobleMaleta * buscarMaleta(string colorMaleta);
      // Explicacion:
      //
      void mostrar() ;
@@ -76,7 +78,10 @@ public:
      void Borrar(string colorMaleta);
      // Explicacion:
      //
-     bool listaVacia(){return primerNodo=nullptr;}
+     bool listaVacia(){return segundoNodo=nullptr;}
      // Explicacion:
      //  Este metodo se encarga de validar si la lista doble se encuentra vacia o no se encuentra vacia.
+
+
+
  };
