@@ -70,12 +70,21 @@ class Maleta {
         Parametros: void
         Retorno: vector de strings
         */
-        string getContenido(){
+        string getContenidoBonito(){
             string contenido = "";
             for (int i = 0; i < 5; i++){
                 contenido += this->contenido[i];
                 contenido += ", ";
             }
             return contenido;
+        }
+
+        /*
+        Funcion que saca el contenido de la maleta
+        Parametros: void 
+        Retorno: array de strings
+        */
+        string getContenido(){
+            return this->contenido[5];
         }
 };
