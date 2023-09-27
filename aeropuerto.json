@@ -7,12 +7,12 @@
     "volumenTotalDePasajeros" : 100,  
     "aduanaPersonas": {
         "minTiempo" : 20,
-        "ValidarPasaporte": 50,
+        "ValidarPasaporte": 0.5,
         "maxTiempo" : 120
     },
     "aduanaMaletas" : {
         "minTiempo" : 3,
-        "ValidarContenidoMaleta": 50,
+        "ValidarContenidoMaleta": 0.5,
         "maxTiempo" : 12
     },
     "lobbyEspera" : {
