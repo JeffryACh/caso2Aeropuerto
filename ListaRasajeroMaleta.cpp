@@ -17,7 +17,6 @@ ListaDoblePasajero::~ListaDoblePasajero(){ // Destructor de la lista doble.
         aux = primerNodo;
         primerNodo = primerNodo -> siguiente;
         delete aux;
-
     }
 }
 int ListaDoblePasajero::largoLista() {
@@ -36,7 +35,6 @@ int ListaDoblePasajero::largoLista() {
         }
         return contador;
     }
-
 }
 void ListaDoblePasajero::mostrar() {
     // Explicacion:
@@ -53,7 +51,6 @@ void ListaDoblePasajero::insertarFinal(string pasaporte,string nacion,string pas
     // Explicacion:
     //
     ListaDoblePasajero* nuevoNodo = new ListaDoblePasajero(pasaporte,nacion,pasajero);
-
     if (!primerNodo) {
         primerNodo = nuevoNodo;
     } else {
@@ -74,7 +71,6 @@ ListaDoblePasajero* ListaDoblePasajero::buscarPasaporte(string pasaporte) {
             return aux;
         aux = aux->siguiente;
     }
-
     return 0;
 }
 void ListaDoblePasajero::Borrar(string pasaporte) {
@@ -83,11 +79,9 @@ void ListaDoblePasajero::Borrar(string pasaporte) {
         cout << "La lista está vacía. No se puede eliminar." << endl;
         return;
     }
-
     ListaDoblePasajero* actual = primerNodo;
     ListaDoblePasajero* anterior = nullptr;
     bool encontrado = false;
-
     // Buscar el nodo con el pasaporte dado
     while (actual != nullptr) {
         if (actual->pasaporte == pasaporte) {
@@ -97,12 +91,10 @@ void ListaDoblePasajero::Borrar(string pasaporte) {
         anterior = actual;
         actual = actual->siguiente;
     }
-
     if (!encontrado) {
         cout << "Pasaporte no encontrado en la lista." << endl;
         return;
     }
-
     // Si el nodo a borrar es el primer nodo
     if (actual == primerNodo) {
         primerNodo = actual->siguiente;
@@ -118,10 +110,7 @@ void ListaDoblePasajero::Borrar(string pasaporte) {
         }
         delete actual;
     }
-
     cout << "Pasaporte eliminado: " << pasaporte << endl;
-
-
 }
 
 
@@ -139,7 +128,6 @@ listaDobleMaleta::~listaDobleMaleta(){ // Destructor de la lista doble.
         aux = segundoNodo;
         segundoNodo = segundoNodo -> siguiente;
         delete aux;
-
     }
 }
 int listaDobleMaleta::largoLista() {
@@ -158,7 +146,6 @@ int listaDobleMaleta::largoLista() {
         }
         return contador;
     }
-
 }
 void listaDobleMaleta::mostrar() {
     // Explicacion:
@@ -174,7 +161,6 @@ void listaDobleMaleta::insertarFinal(string contMaleta,string colorMaleta) {
     // Explicacion:
     //
     listaDobleMaleta* nuevoNodo = new listaDobleMaleta(contMaleta,colorMaleta);
-
     if (!segundoNodo) {
         segundoNodo = nuevoNodo;
     } else {
@@ -185,22 +171,15 @@ void listaDobleMaleta::insertarFinal(string contMaleta,string colorMaleta) {
         temp->siguiente = nuevoNodo;
         nuevoNodo->anterior = temp;
     }
-
-
 }
 listaDobleMaleta * listaDobleMaleta::buscarMaleta(string colorMaleta) {
     listaDobleMaleta*aux=segundoNodo;
-
     while (aux) {
         if (aux->colorMaleta == colorMaleta)
             return aux;
         aux = aux->siguiente;
     }
-
     return 0;
-
-
-
 }
 void listaDobleMaleta::Borrar(string colorMaleta) {
     // Verificar si la lista está vacía
@@ -208,11 +187,9 @@ void listaDobleMaleta::Borrar(string colorMaleta) {
         cout << "La lista está vacía. No se puede eliminar." << endl;
         return;
     }
-
     listaDobleMaleta* actual = segundoNodo;
     listaDobleMaleta* anterior = nullptr;
     bool encontrado = false;
-
     // Buscar el nodo con el color de maleta dado
     while (actual != nullptr) {
         if (actual->colorMaleta == colorMaleta) {
@@ -222,12 +199,10 @@ void listaDobleMaleta::Borrar(string colorMaleta) {
         anterior = actual;
         actual = actual->siguiente;
     }
-
     if (!encontrado) {
         cout << "Color de maleta no encontrado en la lista." << endl;
         return;
     }
-
     // Si el nodo a borrar es el segundo nodo
     if (actual == segundoNodo) {
         segundoNodo = actual->siguiente;
@@ -243,10 +218,5 @@ void listaDobleMaleta::Borrar(string colorMaleta) {
         }
         delete actual;
     }
-
     cout << "Color de maleta eliminado: " << colorMaleta << endl;
-
-
 }
-
-

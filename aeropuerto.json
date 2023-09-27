@@ -4,14 +4,15 @@
     "maxHora" : 230,
     "retencion" : 0.5, 
     "carcel" : 0.08,
+    "volumenTotalDePasajeros" : 100,  
     "aduanaPersonas": {
         "minTiempo" : 20,
-        "ValidarPasaporte": [true, false],
+        "ValidarPasaporte": 50,
         "maxTiempo" : 120
     },
     "aduanaMaletas" : {
         "minTiempo" : 3,
-        "ValidarContenidoMaleta": [true, false],
+        "ValidarContenidoMaleta": 50,
         "maxTiempo" : 12
     },
     "lobbyEspera" : {
