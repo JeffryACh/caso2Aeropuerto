@@ -27,7 +27,6 @@ const int MINIMA_EDAD = 16;
 
     * Hay que generar pasageros aleatorios
     * Hay que generar maletas aleatorias
-    * Hay que generar hilos aleatorios
 */
 
 /**
