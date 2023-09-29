@@ -11,6 +11,7 @@
 #include <thread>
 #include <chrono>
 #include "validaciones.cpp"
+#include "claseMaletas.cpp"
 
 using namespace std;
 
@@ -27,7 +28,6 @@ const int MINIMA_EDAD = 16;
 
     * Hay que generar pasageros aleatorios
     * Hay que generar maletas aleatorias
-    * Hay que generar hilos aleatorios
 */
 
 /**
@@ -79,15 +79,15 @@ Pasajero generarUnPasajero(){
     } else {  
         codigoPasaporte = generadorDePasaportes(nacionalidad, nombre, edad);
     }
-    std::vector<std::string> contenidoMaleta(5);
+    string contenidoMaleta[5];
     for (int i = 0; i < 5; i++){
         contenidoMaleta[i] = CONTENIDO[rand() % 20];
     }
-    Maleta maleta;
-    maleta.peso = rand() % 50 + 1;
-    maleta.descripcion = "Maleta de " + nombre;
-    maleta.propietario = nombre;
-    maleta.contenido = contenidoMaleta;
+    int peso = rand() % 20 + 1;
+    string descripcion = "Maleta de " + nombre;
+    string propietario = nombre;
+    // Maleta maleta(peso, descripcion, propietario, contenidoMaleta);
+    Maleta maleta = {peso, descripcion, propietario, contenidoMaleta};
     Pasaporte pasaporte = {codigoPasaporte, nacionalidad, sexo};
     Pasajero pasajero = {nombre, edad, pasaporte, nacionalidad, sexo, maleta};
     return pasajero;

@@ -2,8 +2,8 @@
     "tiempoSimulacionHora": 20000,
     "minHora" : 20,
     "maxHora" : 230,
-    "retencion" : 0.5, 
-    "carcel" : 0.08,
+    "ProbabilidadDeRetencion" : 0.5, 
+    "probabilidadDeCarcel" : 1,
     "volumenTotalDePasajeros" : 100,  
     "aduanaPersonas": {
         "minTiempo" : 20,
@@ -36,7 +36,8 @@
         "cantidadMaletasPorPersona" : 1,
         "cantMaletasPorVagon" : 5,
         "cantidadVagones" : 3,
-        "contenidoDeLasMaletas" : ["Pistola", "Cuchillo", "Explosivos", "Quimicos peligrosos", "Drogas", "Ropa", "Zapatos", "Laptop", "Tablet", "Audifonos", "Cargador", "Billetera", "Dinero", "Pasaporte", "Maquillaje", "Cepillo de dientes", "Cepillo de cabello", "Cuaderno", "Libro", "Lapicero"]
+        "cantidadDeCosasEnMaleta" : 5,
+        "posibleContenidoDeLasMaletas" : ["Pistola", "Cuchillo", "Explosivos", "Quimicos peligrosos", "Drogas", "Ropa", "Zapatos", "Laptop", "Tablet", "Audifonos", "Cargador", "Billetera", "Dinero", "Pasaporte", "Maquillaje", "Cepillo de dientes", "Cepillo de cabello", "Cuaderno", "Libro", "Lapicero"]
     },
     "pasaporte": {
         "codigo": "crcjef21xxxxxx",

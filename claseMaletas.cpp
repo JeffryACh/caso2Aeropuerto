@@ -15,8 +15,8 @@ class Maleta {
     // Atributos
     private:
         int peso;
-        std::string descripcion;
-        std::string propietario;
+        string descripcion;
+        string propietario;
         string contenido[5];
 
     // Constructor

@@ -8,6 +8,8 @@
 #include <iostream>
 #include <thread>
 #include <vector>
+#include <string>
+#include "claseMaletas.cpp"
 
 using namespace std;
 
@@ -16,14 +18,6 @@ struct Pasaporte{
     string codigo; //tiene que ser unico y iniciar con las primeras 3 letras del pais y luego 3 letras del nombre y luego la edad del pasajero y por ultimo 6 numeros aleatorios
     string nacionalidad; 
     string sexo;
-};
-
-// Struct maleta
-struct Maleta {
-    int peso;
-    std::string descripcion;
-    std::string propietario;
-    std::vector<std::string> contenido;
 };
 
 // Clase Pasajero
@@ -35,7 +29,7 @@ class Pasajero{
         Pasaporte pasaporte; //viene de la estructura pasaporte de arriba
         string nacionalidad;
         string sexo;
-        Maleta maleta; //viene de la estructura maleta de arriba
+        Maleta *maleta;
 
     
     // Constructor
@@ -57,7 +51,7 @@ class Pasajero{
             this->pasaporte = pasaporte;
             this->nacionalidad = nacionalidad;
             this->sexo = sexo;
-            this->maleta = maleta;
+            *this->maleta = maleta;
         }
     
     // Metodos
@@ -73,7 +67,7 @@ class Pasajero{
             cout << "Pasaporte: " << pasaporte.codigo << endl;
             cout << "Nacionalidad: " << nacionalidad << endl;
             cout << "Sexo: " << sexo << endl;
-            cout << "Maleta: " << maleta.descripcion << endl;
+            cout << "Maleta: " << maleta->getDescripcion() << endl;
         }
 
         // Getters
@@ -128,7 +122,7 @@ class Pasajero{
         Retorno: string que representa la descripcion de la maleta del pasajero
         */
         string getMaleta(){
-            return maleta.descripcion;
+            return maleta->getDescripcion();
         }
 
         /*
@@ -138,7 +132,7 @@ class Pasajero{
         */
         string getContenidoMaleta(){
             string contenido = "";
-            for (auto it = maleta.contenido.begin(); it != maleta.contenido.end(); ++it)
+            for (auto it = maleta->getContenido().begin(); it != maleta->getContenido().end(); ++it)
             {
                 contenido += *it;
                 contenido += ", ";
