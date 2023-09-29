@@ -53,9 +53,7 @@ class Pasajero{
             this->sexo = sexo;
             *this->maleta = maleta;
         }
-    
     // Metodos
-    public:
         /*
         Funcion que muestra los datos del pasajero
         Parametros: ninguno

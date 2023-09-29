@@ -11,6 +11,7 @@
 #include <thread>
 #include <chrono>
 #include "validaciones.cpp"
+#include "clasePasajeros.cpp"
 #include "claseMaletas.cpp"
 
 using namespace std;
@@ -86,10 +87,9 @@ Pasajero generarUnPasajero(){
     int peso = rand() % 20 + 1;
     string descripcion = "Maleta de " + nombre;
     string propietario = nombre;
-    // Maleta maleta(peso, descripcion, propietario, contenidoMaleta);
-    Maleta maleta = {peso, descripcion, propietario, contenidoMaleta};
+    Maleta maleta(peso, descripcion, propietario, contenidoMaleta); 
     Pasaporte pasaporte = {codigoPasaporte, nacionalidad, sexo};
-    Pasajero pasajero = {nombre, edad, pasaporte, nacionalidad, sexo, maleta};
+    Pasajero pasajero(nombre, edad, pasaporte, nacionalidad, sexo, maleta);
     return pasajero;
 }
 

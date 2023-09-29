@@ -4,6 +4,7 @@
 #include <queue>
 #include "claseZonas.cpp"
 #include "claseMaletas.cpp"
+#include "validaciones.cpp"
 
 using namespace std;
 
