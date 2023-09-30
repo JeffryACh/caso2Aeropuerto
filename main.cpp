@@ -12,7 +12,6 @@
 #include <chrono>
 #include "validaciones.cpp"
 #include "clasePasajeros.cpp"
-#include "claseMaletas.cpp"
 
 using namespace std;
 
