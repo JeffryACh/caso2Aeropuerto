@@ -17,7 +17,7 @@ class Maleta {
         int peso;
         string descripcion;
         string propietario;
-        string contenido[5];
+        string *contenido;
 
     // Constructor
     public:
@@ -30,12 +30,11 @@ class Maleta {
             - contenido: vector de strings que representa el contenido de la maleta
         Retorno: void
         */
-        Maleta(int peso, std::string descripcion, std::string propietario, string contenido){
+        Maleta(int peso, string descripcion, string propietario, string contenido[5]){
             this->peso = peso;
             this->descripcion = descripcion;
             this->propietario = propietario;
-            this->contenido[5] = contenido;
-
+            this->contenido = &contenido[0];
         }
 
         /*
@@ -52,7 +51,7 @@ class Maleta {
         Parametros: void
         Retorno: string
         */
-        std::string getDescripcion(){
+        string getDescripcion(){
             return this->descripcion;
         }
 
@@ -61,7 +60,7 @@ class Maleta {
         Parametros: void
         Retorno: string
         */
-        std::string getPropietario(){
+        string getPropietario(){
             return this->propietario;
         }
 
@@ -85,6 +84,6 @@ class Maleta {
         Retorno: array de strings
         */
         string getContenido(){
-            return this->contenido[5];
+            return *this->contenido;
         }
 };
