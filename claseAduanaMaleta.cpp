@@ -6,15 +6,14 @@
 #include "claseZonas.cpp"
 using namespace std;
 
-class AduanaMaleta :public Aduanas{
+class AduanaMaleta{
 private:
 
     int cantMaletasRevisadas;
     string contenidoMaletas[5] ;
     std::vector<Maleta> maletas;
 public:
-    AduanaMaleta(int capacidad, int cantidadPersonas, int cantidadMaletas, Maleta maletas[], int cantidadMaletasRevisadas, string contenidoMaleta[]) : Aduanas(capacidad, cantidadPersonas, cantidadMaletas, maletas, cantidadMaletasRevisadas) {
-        // Inicializar el atributo contenidoMaleta
+    AduanaMaleta(int capacidad, int cantidadPersonas, int cantidadMaletas, Maleta maletas[], int cantidadMaletasRevisadas, string contenidoMaleta[]) {
         for (int i = 0; i < 5; i++) {
             this->contenidoMaletas[i] = contenidoMaleta[i];
         }
@@ -24,13 +23,11 @@ public:
     }
 
     void setContenidoMaleta(string contenidoMaleta[]) {
-        // Copiar el contenido del nuevo vector al atributo contenidoMaleta
         for (int i = 0; i < 5; i++) {
             this->contenidoMaletas[i] = contenidoMaleta[i];
         }
     }
     bool revisarMaleta(string contenidoMaleta[5]) {
-        // Utilizar la función validarContenidoMaleta para verificar el contenido
         return validarContenidoMaleta(contenidoMaleta);
     }
     void setCantidadMaletasRevisadas(int nuevaCantidad) {
