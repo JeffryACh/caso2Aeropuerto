@@ -92,8 +92,8 @@ class Pasajero{
         Parametros: ninguno
         Retorno: string que representa el codigo del pasaporte del pasajero
         */
-        string getPasaporte(){
-            return pasaporte.codigo;
+        Pasaporte getPasaporte(){
+            return pasaporte;
         }
 
         /*
@@ -119,8 +119,8 @@ class Pasajero{
         Parametros: ninguno
         Retorno: string que representa la descripcion de la maleta del pasajero
         */
-        string getMaleta(){
-            return maleta->getDescripcion();
+        Maleta getMaleta(){
+            return *maleta;
         }
 
         /*

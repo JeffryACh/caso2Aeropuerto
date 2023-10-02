@@ -10,15 +10,15 @@
 
 class Maletas{
 public:
-   Maletas(std::string& identificacionMaleta){
-       this->idMaleta=identificacionMaleta;
+    Maletas(std::string& identificacionMaleta){
+        this->idMaleta=identificacionMaleta;
 
 
-   }
-   std::string getIdent(){
-       return idMaleta;
+    }
+    std::string getIdent(){
+        return idMaleta;
 
-   }
+    }
 private:
 
     std::string idMaleta;
@@ -45,8 +45,4 @@ public:
 
 private:
     std::stack<Maletas> pilaMaletas;
-
-
-
-
 };
