@@ -12,6 +12,9 @@
 #include <chrono>
 #include "validaciones.cpp"
 #include "clasePasajeros.cpp"
+#include <map>
+#include <chrono>
+#include <random>
 
 using namespace std;
 
@@ -22,20 +25,31 @@ const string CONTENIDO[20] = {"Pistola", "Cuchillo", "Explosivos", "Quimicos pel
 const int MAXIMA_EDAD = 75;
 const int MINIMA_EDAD = 16;
 
-/*
-    * Funcion que genera un codigo de pasaporte aleatorio
-    * @return string codigo de pasaporte
+// Función para generar un tiempo de ejecución aleatorio
+int generarTiempoAleatorio(int minTiempo, int maxTiempo) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> tiempoDistribution(minTiempo, maxTiempo);
+    return tiempoDistribution(gen);
+}
 
-    * Hay que generar pasageros aleatorios
-    * Hay que generar maletas aleatorias
-*/
+// Función para medir el tiempo de ejecución real de una tarea
+void medirTiempoEjecucion() {
+    // Registrar el tiempo de inicio
+    auto inicio = std::chrono::high_resolution_clock::now();
 
-/**
- * @brief Generates a random passport code for a given passenger, until a valid one is found.
- * 
- * @param pPasajero The passenger for whom the passport code is being generated.
- * @return A string representing the generated passport code.
- */
+    // Simular una tarea
+    int tiempoSimulado = generarTiempoAleatorio(20, 120);
+    std::this_thread::sleep_for(std::chrono::seconds(tiempoSimulado));  // Simulación de tiempo
+
+    // Registrar el tiempo de finalización
+    auto fin = std::chrono::high_resolution_clock::now();
+
+    // Calcular la duración en milisegundos
+    auto duracion = std::chrono::duration_cast<std::chrono::milliseconds>(fin - inicio);
+
+    std::cout << "Tiempo de ejecución real: " << duracion.count() << " milisegundos" << std::endl;
+}
 string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int pEdad){;
     bool codigoValido = false;
 
@@ -93,9 +107,9 @@ Pasajero generarUnPasajero(){
 }
 
 int main(){
-    std::vector<Pasajero> pasajeros;
+    //std::vector<Pasajero> pasajeros;
     
-    for (int i = 0; i < 5; i++){
+    /*for (int i = 0; i < 5; i++){
         pasajeros.push_back(generarUnPasajero());
     }
 
@@ -104,7 +118,9 @@ int main(){
         cout << endl;
         cout << "Contenido de la maleta: " << pasajeros[i].getContenidoMaleta() << endl;
         cout << endl;
-    }
+    }*/
+
+    medirTiempoEjecucion();
 
     return 0;
 }
