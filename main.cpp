@@ -14,7 +14,9 @@
 #include "clasePasajeros.cpp"
 #include <map>
 #include <random>
-
+#include <fstream>
+#include "json.hpp"
+using json = nlohmann::json;
 using namespace std;
 
 const string PAISES[15] = {"CRC", "USA", "ESP", "COL", "PAN", "PER", "MEX", "BRA", "ARG", "CHI", "URU", "PAR", "ECU", "BOL", "VEN"};
@@ -23,7 +25,20 @@ const string SEXO[2] = {"M", "F"};
 const string CONTENIDO[20] = {"Pistola", "Cuchillo", "Explosivos", "Quimicos peligrosos", "Drogas", "Ropa", "Zapatos", "Laptop", "Tablet", "Audifonos", "Cargador", "Billetera", "Dinero", "Pasaporte", "Maquillaje", "Cepillo de dientes", "Cepillo de cabello", "Cuaderno", "Libro", "Lapicero"};
 const int MAXIMA_EDAD = 75;
 const int MINIMA_EDAD = 16;
+using json = nlohmann::json;
 
+int main() {
+    // Open the JSON file
+    std::ifstream file("aeropuerto.json");
+    json j;
+
+    // Read the JSON file into a JSON object
+    file >> j;
+
+    // Access the JSON object
+    std::cout << "tiempo de simulacion: " << j["tiempoSimulacionHora"] << std::endl;
+    std::cout << "Maximo horas: " << j["maxHora"] << std::endl;
+}
 // Función para generar un tiempo de ejecución aleatorio
 int generarTiempoAleatorio(int minTiempo, int maxTiempo) {
     std::random_device rd;
@@ -105,21 +120,21 @@ Pasajero generarUnPasajero(){
     return pasajero;
 }
 
-int main(){
-    //std::vector<Pasajero> pasajeros;
+// int main(){
+//     //std::vector<Pasajero> pasajeros;
     
-    /*for (int i = 0; i < 5; i++){
-        pasajeros.push_back(generarUnPasajero());
-    }
+//     /*for (int i = 0; i < 5; i++){
+//         pasajeros.push_back(generarUnPasajero());
+//     }
 
-    for (int i = 0; i < 5; i++){
-        pasajeros[i].mostrarDatos();
-        cout << endl;
-        cout << "Contenido de la maleta: " << pasajeros[i].getContenidoMaleta() << endl;
-        cout << endl;
-    }*/
+//     for (int i = 0; i < 5; i++){
+//         pasajeros[i].mostrarDatos();
+//         cout << endl;
+//         cout << "Contenido de la maleta: " << pasajeros[i].getContenidoMaleta() << endl;
+//         cout << endl;
+//     }*/
 
-    medirTiempoEjecucion();
+//     medirTiempoEjecucion();
 
-    return 0;
-}
+//     return 0;
+// }
