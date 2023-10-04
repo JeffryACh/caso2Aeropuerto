@@ -51,7 +51,7 @@ class Pasajero{
             this->pasaporte = pasaporte;
             this->nacionalidad = nacionalidad;
             this->sexo = sexo;
-            *this->maleta = maleta;
+            this->maleta = new Maleta(maleta);
         }
     // Metodos
         /*

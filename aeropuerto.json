@@ -12,7 +12,7 @@
     },
     "aduanaMaletas" : {
         "minTiempo" : 3,
-        "ValidarContenidoMaleta": 0.5,
+        "validarContenidoMaleta": 0.5,
         "maxTiempo" : 12
     },
     "lobbyEspera" : {
@@ -32,7 +32,8 @@
         "maxTiempo" : 3
     },
     "maleta" : {
-        "peso" : 10,
+        "pesoMin" : 10,
+        "pesoMax" : 25,
         "cantidadMaletasPorPersona" : 1,
         "cantMaletasPorVagon" : 5,
         "cantidadVagones" : 3,

@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -17,7 +18,7 @@ class Maleta {
         int peso;
         string descripcion;
         string propietario;
-        string *contenido;
+        vector<string> contenido;
 
     // Constructor
     public:
@@ -30,11 +31,11 @@ class Maleta {
             - contenido: vector de strings que representa el contenido de la maleta
         Retorno: void
         */
-        Maleta(int peso, string descripcion, string propietario, string contenido[5]){
+        Maleta(int peso, string descripcion, string propietario, vector<string> contenido){
             this->peso = peso;
             this->descripcion = descripcion;
             this->propietario = propietario;
-            this->contenido = &contenido[0];
+            this->contenido = contenido;
         }
 
         /*
@@ -65,25 +66,15 @@ class Maleta {
         }
 
         /*
-        Funcion que retorna el contenido de la maleta
-        Parametros: void
-        Retorno: vector de strings
-        */
-        string getContenidoBonito(){
-            string contenido = "";
-            for (int i = 0; i < 5; i++){
-                contenido += this->contenido[i];
-                contenido += ", ";
-            }
-            return contenido;
-        }
-
-        /*
         Funcion que saca el contenido de la maleta
         Parametros: void 
-        Retorno: array de strings
+        Retorno: string
         */
         string getContenido(){
-            return *this->contenido;
+            string contenido_str;
+            for (const auto& elem : this->contenido) {
+                contenido_str += elem + ", ";
+            }
+            return contenido_str;
         }
 };

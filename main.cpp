@@ -12,10 +12,11 @@
 #include <chrono>
 #include "validaciones.cpp"
 #include "clasePasajeros.cpp"
-#include <map>
 #include <random>
 #include <fstream>
 #include "json.hpp"
+
+
 using json = nlohmann::json;
 using namespace std;
 
@@ -27,43 +28,6 @@ const int MAXIMA_EDAD = 75;
 const int MINIMA_EDAD = 16;
 using json = nlohmann::json;
 
-int main() {
-    // Open the JSON file
-    std::ifstream file("aeropuerto.json");
-    json j;
-
-    // Read the JSON file into a JSON object
-    file >> j;
-
-    // Access the JSON object
-    std::cout << "tiempo de simulacion: " << j["tiempoSimulacionHora"] << std::endl;
-    std::cout << "Maximo horas: " << j["maxHora"] << std::endl;
-}
-// Función para generar un tiempo de ejecución aleatorio
-int generarTiempoAleatorio(int minTiempo, int maxTiempo) {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<int> tiempoDistribution(minTiempo, maxTiempo);
-    return tiempoDistribution(gen);
-}
-
-// Función para medir el tiempo de ejecución real de una tarea
-void medirTiempoEjecucion() {
-    // Registrar el tiempo de inicio
-    auto inicio = std::chrono::high_resolution_clock::now();
-
-    // Simular una tarea
-    int tiempoSimulado = generarTiempoAleatorio(20, 120);
-    std::this_thread::sleep_for(std::chrono::seconds(tiempoSimulado));  // Simulación de tiempo
-
-    // Registrar el tiempo de finalización
-    auto fin = std::chrono::high_resolution_clock::now();
-
-    // Calcular la duración en milisegundos
-    auto duracion = std::chrono::duration_cast<std::chrono::milliseconds>(fin - inicio);
-
-    std::cout << "Tiempo de ejecución real: " << duracion.count() << " milisegundos" << std::endl;
-}
 string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int pEdad){;
     bool codigoValido = false;
 
@@ -106,35 +70,33 @@ Pasajero generarUnPasajero(){
         codigoPasaporte = generadorDePasaportesErroneos(nacionalidad, nombre, edad);
     } else {  
         codigoPasaporte = generadorDePasaportes(nacionalidad, nombre, edad);
-    }
-    string contenidoMaleta[5];
+    };
+    vector <string> contenidoMaleta;
     for (int i = 0; i < 5; i++){
-        contenidoMaleta[i] = CONTENIDO[rand() % 20];
-    }
+        contenidoMaleta.push_back(CONTENIDO[rand() % 20]);
+    };
     int peso = rand() % 20 + 1;
     string descripcion = "Maleta de " + nombre;
     string propietario = nombre;
-    Maleta maleta(peso, descripcion, propietario, contenidoMaleta); 
+    Maleta maleta(peso, descripcion, propietario, contenidoMaleta);
     Pasaporte pasaporte = {codigoPasaporte, nacionalidad, sexo};
     Pasajero pasajero(nombre, edad, pasaporte, nacionalidad, sexo, maleta);
     return pasajero;
 }
 
-// int main(){
-//     //std::vector<Pasajero> pasajeros;
+int main(){
+    vector<Pasajero> pasajeros;
     
-//     /*for (int i = 0; i < 5; i++){
-//         pasajeros.push_back(generarUnPasajero());
-//     }
+    for (int i = 0; i < 5; i++){
+        pasajeros.push_back(generarUnPasajero());
+    }
 
-//     for (int i = 0; i < 5; i++){
-//         pasajeros[i].mostrarDatos();
-//         cout << endl;
-//         cout << "Contenido de la maleta: " << pasajeros[i].getContenidoMaleta() << endl;
-//         cout << endl;
-//     }*/
+    for (int i = 0; i < 5; i++){
+        pasajeros[i].mostrarDatos();
+        cout << pasajeros[i].getMaleta().getContenido() << endl;
+    }
 
-//     medirTiempoEjecucion();
+    
 
-//     return 0;
-// }
+    return 0;
+}
