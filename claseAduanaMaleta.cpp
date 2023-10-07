@@ -4,6 +4,7 @@
 #include "claseAduana.cpp"
 #include "validaciones.cpp"
 #include "claseZonas.cpp"
+#include "AlmMaleta.cpp"
 using namespace std;
 
 class AduanaMaleta{
@@ -12,8 +13,11 @@ private:
     int cantMaletasRevisadas;
     string contenidoMaletas[5] ;
     std::vector<Maleta> maletas;
+    AlmacenarMaletas &almacenarMaletas;
 public:
-    AduanaMaleta(int capacidad, int cantidadPersonas, int cantidadMaletas, Maleta maletas[], int cantidadMaletasRevisadas, string contenidoMaleta[]) {
+    AduanaMaleta(AlmacenarMaletas &almacenarMaletas, int capacidad, int cantidadPersonas, int cantidadMaletas,
+                 Maleta maletas[], int cantidadMaletasRevisadas, string contenidoMaleta[],
+                 AlmacenarMaletas &almacenarMaletas1) : almacenarMaletas(almacenarMaletas1) {
         for (int i = 0; i < 5; i++) {
             this->contenidoMaletas[i] = contenidoMaleta[i];
         }

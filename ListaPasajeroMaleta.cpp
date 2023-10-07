@@ -2,7 +2,7 @@
 // Created by aquir on 23/9/2023.
 //
 
-#include "ListaRasajeroMaleta.h"
+#include "ListaPasajeroMaleta.h"
 
 //*********************************************************************************
 // Metodos de la Lista Doble de Pasajeros
