@@ -5,23 +5,23 @@
 #include "claseZonas.cpp"
 #include "claseMaletas.cpp"
 #include "validaciones.cpp"
+#include "clasePasajeros.cpp"
 
 using namespace std;
 
 class AduanaPersonas : public Zonas{
     // Atributos específicos de AduanaPersonas
 private:
+    Pasajero *pasajero;
     int capacidad;
-    string pCodigo;
-    string pPais;
-    string pNombre;
-    int pEdad;
     bool revisionPersona; // Indica si se ha realizado la revisión de la persona
 
 public:
     // Constructor
-    AduanaPersonas(int capacidad, int cantidadPersonas, int cantidadMaletas, Maleta maletas[], int cantidadMaletasRevisadas, bool revisionPersona,string codigo, string pais, string nombre) : Zonas(capacidad, cantidadPersonas, cantidadMaletas) {
+    AduanaPersonas(int capacidad, bool revisionPersona, Pasajero pasajero, int cantidadPersonas, int cantidadMaletas) : Zonas(capacidad, cantidadPersonas, cantidadMaletas) {
         this->revisionPersona = revisionPersona;
+        this->pasajero = new Pasajero(pasajero);
+        this->revisionPersona = false;
     }
 
     // Métodos específicos de AduanaPersonas
@@ -29,8 +29,8 @@ public:
         return revisionPersona;
     }
 
-    bool realizarRevision(string pCodigo, string pPais, string pNombre, int pEdad) {
-        return validarCodigoPasaporte( pCodigo, pPais,  pNombre,  pEdad);
+    bool realizarRevision(Pasajero pPasajero) {
+        return validarCodigoPasaporte(pPasajero.getPasaporte().codigo, pPasajero.getNacionalidad(), pPasajero.getNombre(), pPasajero.getEdad());
     }
 };
 
