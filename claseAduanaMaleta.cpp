@@ -7,8 +7,10 @@
 #include "AlmMaleta.cpp"
 using namespace std;
 
+// Definición de la clase AduanaMaleta
 class AduanaMaleta{
 private:
+    // Constructor de la clase AduanaMaleta
 
     int cantMaletasRevisadas;
     string contenidoMaletas[5] ;
@@ -22,22 +24,25 @@ public:
             this->contenidoMaletas[i] = contenidoMaleta[i];
         }
     }
+    //Este metodo sirve para obtener el contenido de las maletas
     string* getContenidoMaleta() {
         return this->contenidoMaletas;
     }
-
+    //Este metodo sirve para establecer el contenido de las maletas
     void setContenidoMaleta(string contenidoMaleta[]) {
         for (int i = 0; i < 5; i++) {
             this->contenidoMaletas[i] = contenidoMaleta[i];
         }
     }
+    //Este metodo sirve para revisar el contenido de una maleta
     bool revisarMaleta(string contenidoMaleta[5]) {
         return validarContenidoMaleta(contenidoMaleta);
     }
+    //Este metodo sirve para establecer la cantidad de maletas revisadas
     void setCantidadMaletasRevisadas(int nuevaCantidad) {
         this->cantMaletasRevisadas = nuevaCantidad;
     }
-
+    //Este metodo sirve para obtener el contenido de las maletas en un formato legible
     string getContenidoBonito() {
         string contenidoStr = "";
         for (int i = 0; i < 5; i++) {
