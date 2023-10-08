@@ -1,5 +1,5 @@
 #include<iostream>
-#include"clasePasajeros.cpp"
+#include"clasePasajeros.h"
 
 using namespace std;
 

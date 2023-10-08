@@ -5,68 +5,30 @@
     * Last modified on: 10/09/2021 15:35
 */
 
-#include <iostream>
-#include <string>
-#include <vector>
+#include "claseZonas.h"
 
-using namespace std;
+// Constructor
+Zonas::Zonas(int capacidad, int cantidadPersonas, int cantidadMaletas) {
+    this->capacidad = capacidad;
+    this->cantidadPersonas = cantidadPersonas;
+    this->cantidadMaletas = cantidadMaletas;
+}
 
-class Zonas{
-    // Atributos
-    private:
-        int capacidad;
-        int cantidadPersonas;
-        int cantidadMaletas;
+// Métodos de acceso
+int Zonas::getCapacidad() const {
+    return this->capacidad;
+}
 
-    // Constructor
-    public:
-        /*
-        Constructor de la clase Zonas
-        Parametros:
-            - capacidad: int que representa la capacidad de la zona
-            - cantidadPersonas: int que representa la cantidad de personas en la zona
-        Retorno: void
-        */
-        Zonas(int capacidad, int cantidadPersonas, int cantidadMaletas){
-            this->capacidad = capacidad;
-            this->cantidadPersonas = cantidadPersonas;
-            this->cantidadMaletas = cantidadMaletas;
-        }
+int Zonas::getCantidadPersonas() const {
+    return this->cantidadPersonas;
+}
 
-        /*
-        Funcion que retorna la capacidad de la zona
-        Parametros: void
-        Retorno: int
-        */
-        int getCapacidad(){
-            return this->capacidad;
-        }
+int Zonas::getCantidadMaletas() const {
+    return this->cantidadMaletas;
+}
 
-        /*
-        Funcion que retorna la cantidad de personas en la zona
-        Parametros: void
-        Retorno: int
-        */
-        int getCantidadPersonas(){
-            return this->cantidadPersonas;
-        }
+void Zonas::setCantidadPersonas(int nuevaCantidad) {
+    this->cantidadPersonas = nuevaCantidad;
+}
 
-        /*
-        Funccion que retorna la cantidad de maletas en la zona
-        Parametros: void
-        Retorno: int
-        */
-        int getCantidadMaletas(){
-            return this->cantidadMaletas;
-        }
-
-        /*
-        Funcion que cambia la cantidad de personas en la zona
-        Parametros: int nuevaCantidad
-        Retorno: void
-        */
-        void setCantidadPersonas(int nuevaCantidad){
-            this->cantidadPersonas = nuevaCantidad;
-        }
-};
 

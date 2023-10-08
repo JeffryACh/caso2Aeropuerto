@@ -12,8 +12,8 @@
 #include <chrono>
 #include <random>
 #include <fstream>
-#include "validaciones.cpp"
-#include "clasePasajeros.cpp"
+#include "validaciones.h"
+#include "clasePasajeros.h"
 #include "json.hpp"
 
 
