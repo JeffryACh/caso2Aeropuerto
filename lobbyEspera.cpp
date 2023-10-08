@@ -27,7 +27,7 @@ class Personas {
         }
 
         // Métodos de la clase Cola
-        void enqueue(Pasajero p) {
+        void agregarPasajero(Pasajero p) {
             Node* temp = new Node(p.getNombre(), p.getEdad(), p.getPasaporte(), p.getNacionalidad(), p.getSexo(), p.getMaleta());
             temp->data = p;
             temp->next = NULL;
@@ -40,7 +40,7 @@ class Personas {
         }
 
         // Función para eliminar un elemento de la cola
-        void dequeue() {
+        void salidaDePasajero() {
             if(front == NULL) {
                 cout << "La cola está vacía" << endl;
             } else {

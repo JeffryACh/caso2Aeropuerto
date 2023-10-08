@@ -1,7 +1,7 @@
 //
 // Created by aquir on 27/9/2023.
 //
-#include "claseAduana.cpp"
+#include "claseAduanaPersonas.cpp"
 #include "validaciones.cpp"
 #include "claseZonas.cpp"
 #include "AlmMaleta.cpp"
