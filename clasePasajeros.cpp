@@ -6,7 +6,7 @@
 */
 
 #include "clasePasajeros.h"
-#include "claseMaletas.h"
+#include "claseMaletas.cpp"
 
 // Constructor
 Pasajero::Pasajero(std::string nombre, int edad, Pasaporte pasaporte, std::string nacionalidad, std::string sexo, Maleta maleta)
