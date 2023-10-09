@@ -1,32 +1,63 @@
+/*
+    * Caso2: Aeropuerto
+    * Authors: Jeffry Araya Ch y Andres Quiros P.
+    * Created on: 06/09/2023 09:00
+    * Last modified on: 08/10/2021 17:20
+*/
+
 #include<iostream>
 #include"clasePasajeros.h"
 
 using namespace std;
 
-// Definición de la estructura Nodo
+
+/**
+ * @brief Estructura de datos que representa un nodo de una lista enlazada simple.
+ * 
+ */
 struct Node {
     Pasajero data; // dato del nodo
     Node* next; // puntero al siguiente nodo
 
-    // Constructor de la estructura Nodo
+    /**
+     * @brief Constructor de la estructura Node.
+     * 
+     * @param nombre Nombre del pasajero.
+     * @param edad Edad del pasajero.
+     * @param pasaporte Pasaporte del pasajero.
+     * @param nacionalidad Nacionalidad del pasajero.
+     * @param sexo Sexo del pasajero.
+     * @param maleta Maleta del pasajero.
+     */
     Node(string nombre, int edad, Pasaporte pasaporte, string nacionalidad, string sexo, Maleta maleta) : data(nombre, edad, pasaporte, nacionalidad, sexo, maleta) {
-    next = NULL;
+        next = NULL;
     }
 };
 
-// Definición de la clase Cola
+
+/**
+ * @brief Clase que representa una cola de personas en un aeropuerto.
+ * 
+ */
 class Personas {
     private:
         Node* front; // puntero al frente de la cola
         Node* rear; // puntero a la parte trasera de la cola
     public:
-        // Constructor de la clase Cola
+        /**
+         * @brief Constructor de la clase Cola.
+         * 
+         */
         Personas() {
             front = NULL;
             rear = NULL;
         }
 
-        // Métodos de la clase Cola
+        /**
+         * @brief Agrega un pasajero a la cola.
+         * 
+         * @param p Pasajero a agregar.
+         */
         void agregarPasajero(Pasajero p) {
             Node* temp = new Node(p.getNombre(), p.getEdad(), p.getPasaporte(), p.getNacionalidad(), p.getSexo(), p.getMaleta());
             temp->data = p;
@@ -39,7 +70,10 @@ class Personas {
             rear = temp;
         }
 
-        // Función para eliminar un elemento de la cola
+        /**
+         * @brief Elimina el primer elemento de la cola.
+         * 
+         */
         void salidaDePasajero() {
             if(front == NULL) {
                 cout << "La cola está vacía" << endl;
@@ -54,7 +88,10 @@ class Personas {
             }
         }
 
-        // Función para mostrar los elementos de la cola
+        /**
+         * @brief Muestra los elementos de la cola.
+         * 
+         */
         void display() {
             if(front == NULL) {
                 cout << "La cola está vacía" << endl;
@@ -69,11 +106,20 @@ class Personas {
             }
         }
 
+        /**
+         * @brief Verifica si la cola está vacía.
+         * 
+         * @return true si la cola está vacía.
+         * @return false si la cola no está vacía.
+         */
         bool isEmpty() {
             return front == NULL;
         }
 
-        // Función para mostrar el elemento del frente de la cola
+        /**
+         * @brief Muestra el elemento del frente de la cola.
+         * 
+         */
         void frontElement() {
             if(isEmpty()) {
                 cout << "La cola está vacía" << endl;
@@ -82,7 +128,11 @@ class Personas {
             }
         }
 
-        // Metodo para retornar el elemento del frente de la cola
+        /**
+         * @brief Retorna el elemento del frente de la cola.
+         * 
+         * @return Pasajero Elemento del frente de la cola.
+         */
         Pasajero getFrontElement() {
             if(isEmpty()) {
                 cout << "La cola está vacía" << endl;

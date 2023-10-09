@@ -2,7 +2,7 @@
     * Caso2: Aeropuerto
     * Authors: Jeffry Araya Ch y Andres Quiros P.
     * Created on: 06/09/2023 09:00
-    * Last modified on: 10/09/2021 15:35
+    * Last modified on: 08/10/2021 17:20
 */
 
 #include <iostream>
@@ -28,6 +28,14 @@ const int MAXIMA_EDAD = 75;
 const int MINIMA_EDAD = 16;
 using json = nlohmann::json;
 
+/**
+ * @brief Función que genera un código de pasaporte erróneo para una persona con los parámetros dados.
+ * 
+ * @param pNacionalidad La nacionalidad de la persona.
+ * @param pNombre El nombre de la persona.
+ * @param pEdad La edad de la persona.
+ * @return Un string con el código de pasaporte erróneo generado.
+ */
 string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int pEdad){;
     bool codigoValido = false;
 
@@ -46,6 +54,14 @@ string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int p
     return codigoErroneo;
 }
 
+/**
+ * @brief Función que genera un código de pasaporte válido a partir de la nacionalidad, nombre y edad del pasajero.
+ * 
+ * @param pNacionalidad La nacionalidad del pasajero.
+ * @param pNombre El nombre del pasajero.
+ * @param pEdad La edad del pasajero.
+ * @return string El código de pasaporte generado.
+ */
 string generadorDePasaportes(string pNacionalidad, string pNombre, int pEdad){
     string codigo = "";
 
@@ -59,6 +75,10 @@ string generadorDePasaportes(string pNacionalidad, string pNombre, int pEdad){
     return codigoValido;
 }
 
+/**
+ * Función que genera un objeto de tipo Pasajero con datos aleatorios.
+ * @return Pasajero objeto generado con datos aleatorios.
+ */
 Pasajero generarUnPasajero(){
     string nombre = NOMBRES[rand() % 15];
     int edad = rand() % (MAXIMA_EDAD - MINIMA_EDAD + 1) + MINIMA_EDAD;

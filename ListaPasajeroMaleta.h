@@ -1,6 +1,9 @@
-//
-// Created by aquir on 23/9/2023.
-//
+/*
+    * Caso2: Aeropuerto
+    * Authors: Jeffry Araya Ch y Andres Quiros P.
+    * Created on: 06/09/2023 09:00
+    * Last modified on: 08/10/2021 17:20
+*/
 
 #include <iostream>
 #include <string>
@@ -16,32 +19,71 @@ class ListaDoblePasajero {
         ListaDoblePasajero* anterior;
         ListaDoblePasajero *primerNodo;
 
-        ListaDoblePasajero(string pasaporte,string nacion,string pasajero){
-            this->pasaporte=pasaporte;
-            this->nacion=nacion;
-            this->pasajero=pasajero;
-            siguiente=anterior = NULL;
-        }
+        /**
+         * @brief Constructor de la clase ListaDoblePasajero
+         * 
+         * @param pasaporte Numero de pasaporte del pasajero
+         * @param nacion Nacionalidad del pasajero
+         * @param pasajero Nombre completo del pasajero
+         */
+        ListaDoblePasajero(string pasaporte,string nacion,string pasajero);
+
+        /**
+         * @brief Constructor por defecto de la clase ListaDoblePasajero
+         * 
+         */
         ListaDoblePasajero();//Constructor
+
+        /**
+         * @brief Destructor de la clase ListaDoblePasajero
+         * 
+         */
         ~ListaDoblePasajero();//Destructor
+
+        /**
+         * @brief Inserta un nodo al final de la lista doble
+         * 
+         * @param pasaporte Numero de pasaporte del pasajero
+         * @param nacion Nacionalidad del pasajero
+         * @param pasajero Nombre completo del pasajero
+         */
         void insertarFinal(string pasaporte,string nacion,string pasajero);
-        // Explicacion:
-        // Este metodo se encarga de insertar noticias a final de la lista doble.
+
+        /**
+         * @brief Retorna el largo de la lista doble
+         * 
+         * @return int Largo de la lista doble
+         */
         int  largoLista();
-        // Explicacion:
-        //  Este metodo se encarga de retornar el largo de la lista doble.
+
+        /**
+         * @brief Busca un nodo en la lista doble
+         * 
+         * @param pasaporte Numero de pasaporte del pasajero a buscar
+         * @return ListaDoblePasajero* Puntero al nodo encontrado, o nullptr si no se encuentra
+         */
         ListaDoblePasajero * buscarPasaporte(string pasaporte);
-        // Explicacion:
-        //  Este metodo se encarga de buscar un nodo de la lista doble.
+
+        /**
+         * @brief Muestra los elementos de la lista doble
+         * 
+         */
         void mostrar() ;
-        // Explicacion:
-        //  Este metodo se encarga de mostrar la lista doble.
+
+        /**
+         * @brief Borra un nodo de la lista doble
+         * 
+         * @param pasaporte Numero de pasaporte del pasajero a borrar
+         */
         void Borrar(string pasaporte);
-        // Explicacion:
-        //  Este metodo se encarga de borrar un nodo de la lista doble.
+
+        /**
+         * @brief Valida si la lista doble se encuentra vacia
+         * 
+         * @return true Si la lista doble se encuentra vacia
+         * @return false Si la lista doble no se encuentra vacia
+         */
         bool listaVacia(){return primerNodo=nullptr;}
-        // Explicacion:
-        //  Este metodo se encarga de validar si la lista doble se encuentra vacia o no se encuentra vacia.
 };
 
 

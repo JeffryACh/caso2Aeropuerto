@@ -1,8 +1,8 @@
 /*
-    * Caso2 - Preliminar 1
-    * Author: Jeffry Araya Ch y Andres Quiros P.
+    * Caso2: Aeropuerto
+    * Authors: Jeffry Araya Ch y Andres Quiros P.
     * Created on: 06/09/2023 09:00
-    * Last modified on: 11/09/2023 17:40
+    * Last modified on: 08/10/2021 17:20
 */
 
 // *Caso 2 - Preliminar 1
