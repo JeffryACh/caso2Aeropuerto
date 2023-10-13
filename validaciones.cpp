@@ -2,7 +2,7 @@
     * Caso2: Aeropuerto
     * Authors: Jeffry Araya Ch y Andres Quiros P.
     * Created on: 06/09/2023 09:00
-    * Last modified on: 10/09/2021 15:35
+    * Last modified on: 08/10/2021 17:20
 */
 
 #include <iostream>
@@ -10,11 +10,16 @@
 #include "validaciones.h"
 using namespace std;
 
-/*
-    Funcion que valida que el codigo de pasaporte sea correcto
-    Parametros: string pCodigo, string pPais, string pNombre, int pEdad
-    Retorno: bool
-*/
+
+/**
+ * @brief Valida el código de un pasaporte según ciertas reglas.
+ * 
+ * @param pCodigo Código del pasaporte a validar.
+ * @param pPais Código del país del pasaporte.
+ * @param pNombre Código del nombre del pasaporte.
+ * @param pEdad Edad del titular del pasaporte.
+ * @return true si el código del pasaporte es válido, false en caso contrario.
+ */
 bool validarCodigoPasaporte(std::string pCodigo, std::string pPais, std::string pNombre, int pEdad){
     if(pCodigo.length() != 11){
         return false;
@@ -41,11 +46,13 @@ bool validarCodigoPasaporte(std::string pCodigo, std::string pPais, std::string 
     return true;
 }
 
-/*
-    Funcion que valida que el contenido de la maleta sea correcto
-    Parametros: string pContenido[]
-    Retorno: bool
-*/
+
+/**
+ * @brief Valida el contenido de una maleta para asegurarse de que no contenga elementos peligrosos.
+ * 
+ * @param pContenido Arreglo de strings que contiene el contenido de la maleta.
+ * @return true si el contenido de la maleta es seguro, false si contiene elementos peligrosos.
+ */
 bool validarContenidoMaleta(std::string pContenido[]){
     for (int i = 0; i < 5; i++){
         if(pContenido[i] == "Pistola" || pContenido[i] == "Cuchillo" || pContenido[i] == "Explosivos" || pContenido[i] == "Quimicos peligrosos" || pContenido[i] == "Drogas"){
@@ -53,4 +60,15 @@ bool validarContenidoMaleta(std::string pContenido[]){
         }
     }
     return true;
+}
+
+/**
+ * @brief Valida si una maleta pertenece a un pasajero en específico.
+ * 
+ * @param pMaleta La maleta a validar.
+ * @param pPasajero El pasajero a comparar con el propietario de la maleta.
+ * @return true si la maleta pertenece al pasajero, false en caso contrario.
+ */
+bool validarMaleta(Maleta pMaleta, Pasajero pPasajero){
+    return pMaleta.getPropietario() == pPasajero.getNombre();
 }
