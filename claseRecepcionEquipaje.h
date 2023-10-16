@@ -1,9 +1,6 @@
-/*
-    * Caso2: Aeropuerto
-    * Authors: Jeffry Araya Ch y Andres Quiros P.
-    * Created on: 06/09/2023 09:00
-    * Last modified on: 13/10/2023 16:15
-*/
+//
+// Created by aquir on 13/10/2023.
+//
 
 #ifndef CASO2_ED_CLASERECEPCIONEQUIPAJE_H
 #define CASO2_ED_CLASERECEPCIONEQUIPAJE_H
@@ -12,11 +9,7 @@
 #include <iostream>
 #include <stack>
 #include "claseMaletas.h"
-
-/**
-    * @brief Clase que representa la recepción de equipaje en un aeropuerto.
-    * 
-    */
+#include  ""
 class RecepcionEquipaje {
 private:
     std::stack<Maleta> pilaEquipaje;
