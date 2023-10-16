@@ -9,8 +9,8 @@
 #define VALIDACIONES_H
 
 #include <string>
-#include "clasePasajeros.cpp"
-#include "claseMaletas.cpp"
+#include "clasePasajeros.h"
+#include "claseMaletas.h"
 
 /**
  * @brief Valida el código de pasaporte de un pasajero.
