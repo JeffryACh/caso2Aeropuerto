@@ -35,7 +35,7 @@ public:
      * @param propietario Propietario de la maleta
      * @param contenido Vector con el contenido de la maleta
     */
-    Maleta(int peso, const std::string& descripcion, const std::string& propietario, const std::vector<std::string>& contenido);
+    Maleta(int peso, const std::string descripcion, const std::string propietario, const std::vector<std::string> contenido);
 
     /**
      * @brief Retorna el peso de la maleta.
