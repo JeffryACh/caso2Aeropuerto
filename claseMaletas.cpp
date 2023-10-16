@@ -16,7 +16,7 @@
  * @param propietario Propietario de la maleta
  * @param contenido Vector con el contenido de la maleta
  */
-Maleta::Maleta(int peso, const std::string descripcion, const std::string propietario, const std::vector<std::string> contenido) {
+Maleta::Maleta(int peso, const std::string& descripcion, const std::string& propietario, const std::vector<std::string>& contenido) {
     this->peso = peso;
     this->descripcion = descripcion;
     this->propietario = propietario;
