@@ -19,6 +19,7 @@
 
 using namespace std;
 
+
 /**
  * @file claseAduanaPersonas.h
  * @brief Definición de la clase AduanaPersonas, que hereda de la clase Zonas y representa una zona de aduana para personas en un aeropuerto.

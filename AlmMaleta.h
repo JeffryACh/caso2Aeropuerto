@@ -53,6 +53,7 @@ public:
     /**
      * Retira una maleta del almacenamiento.
      */
+
     void retirarMaleta();
     
     /**

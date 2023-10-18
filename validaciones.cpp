@@ -20,6 +20,7 @@ using namespace std;
  * @param pEdad Edad del titular del pasaporte.
  * @return true si el código del pasaporte es válido, false en caso contrario.
  */
+
 bool validarCodigoPasaporte(std::string pCodigo, std::string pPais, std::string pNombre, int pEdad){
     if(pCodigo.length() != 11){
         return false;

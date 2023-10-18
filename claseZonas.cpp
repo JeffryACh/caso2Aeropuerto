@@ -15,6 +15,7 @@
  * @param cantidadPersonas Cantidad actual de personas en la zona
  * @param cantidadMaletas Cantidad actual de maletas en la zona
  */
+
 Zonas::Zonas(int capacidad, int cantidadPersonas, int cantidadMaletas) {
     this->capacidad = capacidad;
     this->cantidadPersonas = cantidadPersonas;

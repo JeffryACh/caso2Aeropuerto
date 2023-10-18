@@ -15,6 +15,7 @@
  * @details Recorre el vector de pasajeros retenidos y los elimina del vector de pasajeros y maletas.
  * 
  */
+
 void Retencion::mandarALaCarcel() {
     for (int i = 0; i < this->pasajeros.size(); i++) {
         std::cout << "Mandando a la cárcel a " << this->pasajeros[i].getNombre() << std::endl;

@@ -20,6 +20,7 @@
  * @brief Clase que representa una zona en un aeropuerto.
  * 
  */
+
 class Zonas {
 private:
     int capacidad; /**< Capacidad de la zona. */

@@ -15,7 +15,6 @@ struct Node {
 
     Node(const Pasajero& pasajero);
 };
-
 class Personas {
 private:
     Node* front;

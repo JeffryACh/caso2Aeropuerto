@@ -16,6 +16,7 @@ private:
     std::vector<std::string> colaPasajeros;
 public:
     AbordajeAvion();
+
     void AgregarPasajero(std::string& nombre);
     void RetirarPasajero();
     bool  Despegar();

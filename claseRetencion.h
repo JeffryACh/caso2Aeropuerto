@@ -35,6 +35,7 @@ public:
      * 
      * @return Capacidad de la zona de retención.
      */
+
     int getCapacidad() const;
 
     /**

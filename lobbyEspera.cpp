@@ -39,7 +39,6 @@ void Personas::salidaDePasajero() {
         }
     }
 }
-
 void Personas::display() {
     if (front == nullptr) {
         std::cout << "La cola está vacía" << std::endl;

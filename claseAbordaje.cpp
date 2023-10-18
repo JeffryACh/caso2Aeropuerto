@@ -35,6 +35,7 @@ bool AbordajeAvion::verificarSeguridad() {
 
 }
 bool AbordajeAvion::Despegar() {
+
     // Verificar si se cumplen todas las condiciones de seguridad para despegar
     if (CantidadPasajeros() > 0) {
         // Si se cumplen todas las condiciones, el avión puede despegar

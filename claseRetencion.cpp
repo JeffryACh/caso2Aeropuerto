@@ -19,6 +19,7 @@ Retencion::Retencion(int capacidad, int cantidadPersonas, int cantidadMaletas) :
     this->capacidad = capacidad;
     this->cantidadPersonas = cantidadPersonas;
     this->cantidadMaletas = cantidadMaletas;
+
 }
 
 

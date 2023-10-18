@@ -42,6 +42,7 @@ void Pasajero::mostrarDatos() {
  * 
  * @return std::string El nombre del pasajero.
  */
+
 std::string Pasajero::getNombre() {
     return nombre;
 }

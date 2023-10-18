@@ -30,6 +30,7 @@ int RecepcionEquipaje::obtenerCantidadEquipaje() const {
 }
 
 void RecepcionEquipaje::vaciarRecepcion() {
+
     while (!pilaEquipaje.empty()) {
         pilaEquipaje.pop();
     }

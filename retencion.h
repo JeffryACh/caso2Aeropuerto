@@ -20,7 +20,6 @@ class Retencion : public Zonas {
 private:
     std::vector<Maleta> maletas;
     std::vector<Pasajero> pasajeros;
-
 public:
     /**
      * @brief Clase que representa la zona de retención de un aeropuerto.

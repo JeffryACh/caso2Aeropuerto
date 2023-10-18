@@ -23,6 +23,7 @@ public:
     RecepcionEquipaje() {} // Constructor
 
     // Métodos
+
     void agregarEquipaje(const Maleta& equipaje);
     void retirarEquipaje();
     bool verificarDisponibilidad() const;

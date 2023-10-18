@@ -27,7 +27,6 @@ const string CONTENIDO[20] = {"Pistola", "Cuchillo", "Explosivos", "Quimicos pel
 const int MAXIMA_EDAD = 75;
 const int MINIMA_EDAD = 16;
 using json = nlohmann::json;
-
 /**
  * @brief Función que genera un código de pasaporte erróneo para una persona con los parámetros dados.
  * 

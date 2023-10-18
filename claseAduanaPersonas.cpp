@@ -17,6 +17,7 @@
  * @return Verdadero si el pasajero ha sido revisado previamente o si se realiza una revisión, falso en caso contrario.
  */
 bool AduanaPersonas::haSidoRevisada(Pasajero pasajero) {
+
     for (int i = 0; i < this->pasajeros.size(); i++) {
         if (this->pasajeros[i].getPasaporte().codigo == pasajero.getPasaporte().codigo) {
             return realizarRevision(pasajero);

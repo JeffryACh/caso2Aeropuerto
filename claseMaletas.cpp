@@ -10,7 +10,7 @@
 
 /**
  * @brief Constructor de la clase Maleta
- * 
+ *
  * @param peso Peso de la maleta
  * @param descripcion Descripción de la maleta
  * @param propietario Propietario de la maleta
@@ -25,7 +25,7 @@ Maleta::Maleta(int peso, const std::string& descripcion, const std::string& prop
 
 /**
  * @brief Retorna el peso de la maleta.
- * 
+ *
  * @return int Peso de la maleta.
  */
 int Maleta::getPeso() const {
@@ -34,7 +34,7 @@ int Maleta::getPeso() const {
 
 /**
  * @brief Retorna la descripción de la maleta.
- * 
+ *
  * @return std::string Descripción de la maleta.
  */
 std::string Maleta::getDescripcion() const {
@@ -43,16 +43,17 @@ std::string Maleta::getDescripcion() const {
 
 /**
  * @brief Retorna el propietario de la maleta.
- * 
+ *
  * @return std::string Propietario de la maleta.
  */
 std::string Maleta::getPropietario() const {
     return this->propietario;
 }
 
+
 /**
  * @brief Retorna el contenido de la maleta como una cadena de texto.
- * 
+ *
  * @return std::string Cadena de texto con el contenido de la maleta.
  */
 std::string Maleta::getContenido() const {

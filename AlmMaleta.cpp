@@ -32,6 +32,7 @@ std::string Maletas::getIdent() {
  * @param id Identificación de la maleta a agregar.
  */
 void AlmacenarMaletas::agregarMaleta(Maletas id) {
+
     Maletas maletas(id); // Instancia de maletas
     pilaMaletas.push(maletas); // Se agrega la maleta a la pila
 }

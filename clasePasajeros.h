@@ -17,6 +17,7 @@
 #include <string>
 #include "claseMaletas.h"
 
+
 /**
  * @brief Estructura Pasaporte
  * @param codigo

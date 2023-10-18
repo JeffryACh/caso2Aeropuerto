@@ -52,6 +52,7 @@ public:
      */
     std::string* getContenidoMaleta();
 
+
     /**
      * Método que modifica el contenido de las maletas.
      * @param contenidoMaleta Arreglo de strings que representa el nuevo contenido de las maletas.
