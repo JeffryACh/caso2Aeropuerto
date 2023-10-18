@@ -6,12 +6,9 @@
 */
 
 #include "ListaPasajeroMaleta.h"
+// Se usara para el entregable final
 
-
-/**
- * @brief Constructor de la lista doble de pasajeros.
- * 
- */
+/*
 ListaDoblePasajero::ListaDoblePasajero() { //Constructor de la lista doble.
     primerNodo = NULL;
 }
@@ -22,6 +19,7 @@ ListaDoblePasajero::ListaDoblePasajero() { //Constructor de la lista doble.
  * Elimina todos los nodos de la lista doble de pasajeros.
  * 
  */
+/*
 ListaDoblePasajero::~ListaDoblePasajero(){ // Destructor de la lista doble.
     ListaDoblePasajero* aux;
     while(primerNodo){
@@ -31,11 +29,7 @@ ListaDoblePasajero::~ListaDoblePasajero(){ // Destructor de la lista doble.
     }
 }
 
-/**
- * @brief Retorna el largo de la lista doble de pasajeros.
- * 
- * @return int Largo de la lista doble de pasajeros.
- */
+
 int ListaDoblePasajero::largoLista() {
     // Explicacion:
     // Este metodo se encarga de recorrer la lista  desde el primer elemento de la lista hasta
@@ -58,6 +52,7 @@ int ListaDoblePasajero::largoLista() {
  * @brief Muestra la lista doble de pasajeros.
  * 
  */
+/*
 void ListaDoblePasajero::mostrar() {
     // Explicacion:
     //
@@ -77,6 +72,7 @@ void ListaDoblePasajero::mostrar() {
  * @param nacion Nacionalidad del pasajero.
  * @param pasajero Nombre del pasajero.
  */
+/*
 void ListaDoblePasajero::insertarFinal(string pasaporte,string nacion,string pasajero) {
     // Explicacion:
     //
@@ -99,6 +95,7 @@ void ListaDoblePasajero::insertarFinal(string pasaporte,string nacion,string pas
  * @param pasaporte Pasaporte del pasajero.
  * @return ListaDoblePasajero* Nodo encontrado.
  */
+/*
 ListaDoblePasajero* ListaDoblePasajero::buscarPasaporte(string pasaporte) {
     ListaDoblePasajero*aux=primerNodo;
     while (aux) {
@@ -114,6 +111,7 @@ ListaDoblePasajero* ListaDoblePasajero::buscarPasaporte(string pasaporte) {
  * 
  * @param pasaporte Pasaporte del pasajero.
  */
+/*
 void ListaDoblePasajero::Borrar(string pasaporte) {
     // Verificar si la lista está vacía
     if (listaVacia()) {
@@ -158,6 +156,7 @@ void ListaDoblePasajero::Borrar(string pasaporte) {
  * @brief Constructor de la lista doble de maletas.
  * 
  */
+/*
 listaDobleMaleta::listaDobleMaleta() { //Constructor de la lista doble.
     segundoNodo = NULL;
 }
@@ -168,6 +167,7 @@ listaDobleMaleta::listaDobleMaleta() { //Constructor de la lista doble.
  * Elimina todos los nodos de la lista doble de maletas.
  * 
  */
+/*
 listaDobleMaleta::~listaDobleMaleta(){ // Destructor de la lista doble.
     listaDobleMaleta* aux;
     while(segundoNodo){
@@ -182,6 +182,7 @@ listaDobleMaleta::~listaDobleMaleta(){ // Destructor de la lista doble.
  * 
  * @return int Largo de la lista doble de maletas.
  */
+/*
 int listaDobleMaleta::largoLista() {
     // Explicacion:
     // Este metodo se encarga de recorrer la lista  desde el primer elemento de la lista hasta
@@ -204,6 +205,7 @@ int listaDobleMaleta::largoLista() {
  * @brief Muestra la lista doble de maletas.
  * 
  */
+/*
 void listaDobleMaleta::mostrar() {
     // Explicacion:
     //
@@ -221,6 +223,7 @@ void listaDobleMaleta::mostrar() {
  * @param contMaleta Contenido de la maleta.
  * @param colorMaleta Color de la maleta.
  */
+/*
 void listaDobleMaleta::insertarFinal(string contMaleta,string colorMaleta) {
     // Explicacion:
     //
@@ -243,6 +246,7 @@ void listaDobleMaleta::insertarFinal(string contMaleta,string colorMaleta) {
  * @param colorMaleta Color de la maleta.
  * @return listaDobleMaleta* Nodo encontrado.
  */
+/*
 listaDobleMaleta * listaDobleMaleta::buscarMaleta(string colorMaleta) {
     listaDobleMaleta*aux=segundoNodo;
     while (aux) {
@@ -258,6 +262,7 @@ listaDobleMaleta * listaDobleMaleta::buscarMaleta(string colorMaleta) {
  * 
  * @param colorMaleta Color de la maleta.
  */
+/*
 void listaDobleMaleta::Borrar(string colorMaleta) {
     // Verificar si la lista está vacía
     if (listaVacia()) {
@@ -296,4 +301,4 @@ void listaDobleMaleta::Borrar(string colorMaleta) {
         delete actual;
     }
     cout << "Color de maleta eliminado: " << colorMaleta << endl;
-}
+} */

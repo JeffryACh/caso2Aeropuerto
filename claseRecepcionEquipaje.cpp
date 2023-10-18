@@ -46,3 +46,28 @@ void RecepcionEquipaje::mostrarEquipaje() const {
         tempPila.pop();
     }
 }
+void RecepcionEquipaje::validarDueñosDeMaletas(const std::vector<Pasajero>& pasajeros) {
+    std::stack<Maleta> tempPila = pilaEquipaje;
+    bool seEncontroAlMenosUnaMaleta = false;
+
+    while (!tempPila.empty()) {
+        Maleta maleta = tempPila.top();
+        tempPila.pop();
+        std::string propietarioMaleta = maleta.getPropietario();
+        seEncontroAlMenosUnaMaleta = false;
+
+        for (Pasajero pasajero : pasajeros) {
+            if (pasajero.getNombre() == propietarioMaleta) {
+                seEncontroAlMenosUnaMaleta = true;
+
+                std::cout << "La maleta pertenece al pasajero: " << pasajero.getNombre() << std::endl;
+                break;
+            }
+        }
+
+        if (!seEncontroAlMenosUnaMaleta) {
+            std::cout << "No se encontró al dueño de la maleta." << std::endl;
+            // Aquí puedes realizar alguna acción si no se encuentra el dueño.
+        }
+    }
+}

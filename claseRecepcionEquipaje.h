@@ -9,7 +9,12 @@
 #include <iostream>
 #include <stack>
 #include "claseMaletas.h"
-#include  ""
+#include "AlmMaleta.h"
+#include "clasePasajeros.h"
+#include "lobbyEspera.h"
+
+class lobbyEspera;
+
 class RecepcionEquipaje {
 private:
     std::stack<Maleta> pilaEquipaje;
@@ -24,6 +29,8 @@ public:
     int obtenerCantidadEquipaje() const;
     void vaciarRecepcion();
     void mostrarEquipaje() const;
+    void validarDueñosDeMaletas(const std::vector<Pasajero>& pasajeros);
+
 };
 
 

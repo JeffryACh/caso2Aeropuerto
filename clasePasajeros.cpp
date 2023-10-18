@@ -6,7 +6,7 @@
 */
 
 #include "clasePasajeros.h"
-#include "claseMaletas.cpp"
+#include "claseMaletas.h"
 
 /**
  * @brief Constructor de la clase Pasajero

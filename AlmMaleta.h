@@ -15,7 +15,7 @@
 #include <iostream>
 #include <stack>
 #include <string>
-
+#include "AlmMaleta.h"
 /**
  * @brief Clase que representa una maleta en el aeropuerto.
  * 
