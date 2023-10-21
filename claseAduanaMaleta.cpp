@@ -45,7 +45,7 @@ std::string* AduanaMaleta::getContenidoMaleta() {
  * 
  * @param contenidoMaleta Arreglo de strings con el contenido de la maleta.
  */
-void AduanaMaleta::setContenidoMaleta(std::string contenidoMaleta[]) {
+void AduanaMaleta::setContenidoMaleta(std::vector<std::string> contenidoMaleta) {
     for (int i = 0; i < 5; i++) {
         this->contenidoMaletas[i] = contenidoMaleta[i];
     }
@@ -57,7 +57,7 @@ void AduanaMaleta::setContenidoMaleta(std::string contenidoMaleta[]) {
  * @param contenidoMaleta Un arreglo de strings que representa el contenido de la maleta.
  * @return true si el contenido de la maleta cumple con las regulaciones de la aduana, false en caso contrario.
  */
-bool AduanaMaleta::revisarMaleta(std::string contenidoMaleta[5]) {
+bool AduanaMaleta::revisarMaleta(std::vector<std::string> contenidoMaleta) {
     return validarContenidoMaleta(contenidoMaleta);
 }
 

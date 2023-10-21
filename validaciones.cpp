@@ -51,7 +51,7 @@ bool validarCodigoPasaporte(std::string pCodigo, std::string pPais, std::string 
 /**
  * @brief Valida el contenido de una maleta para asegurarse de que no contenga elementos peligrosos.
  * 
- * @param pContenido Arreglo de strings que contiene el contenido de la maleta.
+ * @param pContenido Vector de strings que contiene el contenido de la maleta.
  * @return true si el contenido de la maleta es seguro, false si contiene elementos peligrosos.
  */
 bool validarContenidoMaleta(std::vector<std::string> pContenido){

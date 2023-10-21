@@ -58,14 +58,14 @@ public:
      * Método que modifica el contenido de las maletas.
      * @param contenidoMaleta Arreglo de strings que representa el nuevo contenido de las maletas.
      */
-    void setContenidoMaleta(std::string contenidoMaleta[]);
+    void setContenidoMaleta(std::vector<std::string> contenidoMaleta);
 
     /**
      * Método que revisa el contenido de una maleta.
      * @param contenidoMaleta Arreglo de strings que representa el contenido de la maleta a revisar.
      * @return True si la maleta es segura, false si no lo es.
      */
-    bool revisarMaleta(std::string contenidoMaleta[5]);
+    bool revisarMaleta(std::vector<std::string> contenidoMaleta);
 
     /**
      * Método que modifica la cantidad de maletas revisadas.

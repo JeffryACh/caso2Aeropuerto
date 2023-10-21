@@ -189,13 +189,6 @@ void generarYMostrarPasajeros(int cantidadPasajeros) {
     }
 }
 
-
-void generarMaletas(){
-
-
-
-}
-
 void generarYMostrarMaletas(int cantidadMaletas) {
     queue<Maleta> colaMaletas;
 
