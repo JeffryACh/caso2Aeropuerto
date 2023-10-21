@@ -13,7 +13,6 @@
 #include <vector>
 #include <queue>
 #include "claseZonas.h"
-#include "claseMaletas.h"
 #include "validaciones.h"
 #include "clasePasajeros.h"
 #include "lobbyEspera.h"

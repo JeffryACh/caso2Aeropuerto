@@ -12,6 +12,7 @@
 #ifndef ADUANAMALETAS_H
 #define ADUANAMALETAS_H
 #include "claseAduanaPersonas.h"
+#include "claseMaletas.h"
 #include "validaciones.h"
 #include "claseZonas.h"
 #include "AlmMaleta.h"
