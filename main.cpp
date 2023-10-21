@@ -80,11 +80,12 @@ string generadorDePasaportes(string pNacionalidad, string pNombre, int pEdad){
  * @return Pasajero objeto generado con datos aleatorios.
  */
 Pasajero generarUnPasajero(){
-    string nombre = NOMBRES[rand() % 15];
+    string nombre = NOMBRES[rand() % 15].substr(0,3);
     int edad = rand() % (MAXIMA_EDAD - MINIMA_EDAD + 1) + MINIMA_EDAD;
     string nacionalidad = PAISES[rand() % 15];
     string sexo = SEXO[rand() % 2];
     int ruletaCodigo = rand() % 2; // Si sale 1 el codigo sera erroneo y si sale 0 sera correcto
+    cout<<ruletaCodigo<<endl;
     string codigoPasaporte;
     if (ruletaCodigo == 1){
         codigoPasaporte = generadorDePasaportesErroneos(nacionalidad, nombre, edad);
@@ -105,6 +106,8 @@ Pasajero generarUnPasajero(){
 }
 
 // Función para generar pasajeros con maletas y mostrar sus datos
+
+#include "validaciones.h" // Asegúrate de incluir el archivo correcto de validaciones
 void generarYMostrarPasajeros(int cantidadPasajeros) {
     queue<Pasajero> colaPasajeros;
 
@@ -138,6 +141,11 @@ void generarYMostrarPasajeros(int cantidadPasajeros) {
     }
 }
 
+void generarMaletas(){
+
+
+
+}
 
 
 int main(){
