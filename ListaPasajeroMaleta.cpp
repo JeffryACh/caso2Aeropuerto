@@ -8,18 +8,18 @@
 #include "ListaPasajeroMaleta.h"
 // Se usara para el entregable final
 
-/*
+
 ListaDoblePasajero::ListaDoblePasajero() { //Constructor de la lista doble.
     primerNodo = NULL;
 }
 
 /**
  * @brief Destructor de la lista doble de pasajeros.
- * 
+ *
  * Elimina todos los nodos de la lista doble de pasajeros.
- * 
+ *
  */
-/*
+
 ListaDoblePasajero::~ListaDoblePasajero(){ // Destructor de la lista doble.
     ListaDoblePasajero* aux;
     while(primerNodo){
@@ -50,33 +50,32 @@ int ListaDoblePasajero::largoLista() {
 
 /**
  * @brief Muestra la lista doble de pasajeros.
- * 
+ *
  */
-/*
+
 void ListaDoblePasajero::mostrar() {
     // Explicacion:
     //
     ListaDoblePasajero* actual = primerNodo;
     while (actual) {
-        cout << "Pasajero: " << actual->pasajero << endl;
-        cout << "Pasaporte: " << actual->pasaporte << endl;
-        cout << "Nacionalidad: " << actual->nacion << endl;
+        cout << "Pasajero: " << actual->pasajero.getNombre() << endl;
+        cout << "Pasaporte: " << actual->pasaporte.codigo << endl;
         actual = actual->siguiente;
     }
 }
 
 /**
  * @brief Inserta un nodo al final de la lista doble de pasajeros.
- * 
+ *
  * @param pasaporte Pasaporte del pasajero.
  * @param nacion Nacionalidad del pasajero.
  * @param pasajero Nombre del pasajero.
  */
-/*
-void ListaDoblePasajero::insertarFinal(string pasaporte,string nacion,string pasajero) {
+
+void ListaDoblePasajero::insertarFinal(Pasajero pasajero) {
     // Explicacion:
     //
-    ListaDoblePasajero* nuevoNodo = new ListaDoblePasajero(pasaporte,nacion,pasajero);
+    ListaDoblePasajero* nuevoNodo = new ListaDoblePasajero(pasajero);
     if (!primerNodo) {
         primerNodo = nuevoNodo;
     } else {
@@ -91,15 +90,15 @@ void ListaDoblePasajero::insertarFinal(string pasaporte,string nacion,string pas
 
 /**
  * @brief Busca un nodo en la lista doble de pasajeros.
- * 
+ *
  * @param pasaporte Pasaporte del pasajero.
  * @return ListaDoblePasajero* Nodo encontrado.
  */
-/*
-ListaDoblePasajero* ListaDoblePasajero::buscarPasaporte(string pasaporte) {
+
+ListaDoblePasajero* ListaDoblePasajero::buscarPasaporte(Pasaporte pasaporte) {
     ListaDoblePasajero*aux=primerNodo;
     while (aux) {
-        if (aux->pasaporte == pasaporte)
+        if (aux->pasaporte.codigo() == pasaporte.codigo())
             return aux;
         aux = aux->siguiente;
     }
@@ -108,11 +107,11 @@ ListaDoblePasajero* ListaDoblePasajero::buscarPasaporte(string pasaporte) {
 
 /**
  * @brief Elimina un nodo de la lista doble de pasajeros.
- * 
+ *
  * @param pasaporte Pasaporte del pasajero.
  */
-/*
-void ListaDoblePasajero::Borrar(string pasaporte) {
+
+void ListaDoblePasajero::Borrar(Pasaporte pasaporte) {
     // Verificar si la lista está vacía
     if (listaVacia()) {
         cout << "La lista está vacía. No se puede eliminar." << endl;
@@ -123,7 +122,7 @@ void ListaDoblePasajero::Borrar(string pasaporte) {
     bool encontrado = false;
     // Buscar el nodo con el pasaporte dado
     while (actual != nullptr) {
-        if (actual->pasaporte == pasaporte) {
+        if (actual->pasaporte.codigo() == pasaporte.codigo()) {
             encontrado = true;
             break;
         }
@@ -149,25 +148,25 @@ void ListaDoblePasajero::Borrar(string pasaporte) {
         }
         delete actual;
     }
-    cout << "Pasaporte eliminado: " << pasaporte << endl;
+    cout << "Pasaporte eliminado: " << pasaporte.codigo() << endl;
 }
 
 /**
  * @brief Constructor de la lista doble de maletas.
- * 
+ *
  */
-/*
+
 listaDobleMaleta::listaDobleMaleta() { //Constructor de la lista doble.
     segundoNodo = NULL;
 }
 
 /**
  * @brief Destructor de la lista doble de maletas.
- * 
+ *
  * Elimina todos los nodos de la lista doble de maletas.
- * 
+ *
  */
-/*
+
 listaDobleMaleta::~listaDobleMaleta(){ // Destructor de la lista doble.
     listaDobleMaleta* aux;
     while(segundoNodo){
@@ -179,10 +178,10 @@ listaDobleMaleta::~listaDobleMaleta(){ // Destructor de la lista doble.
 
 /**
  * @brief Retorna el largo de la lista doble de maletas.
- * 
+ *
  * @return int Largo de la lista doble de maletas.
  */
-/*
+
 int listaDobleMaleta::largoLista() {
     // Explicacion:
     // Este metodo se encarga de recorrer la lista  desde el primer elemento de la lista hasta
@@ -203,31 +202,31 @@ int listaDobleMaleta::largoLista() {
 
 /**
  * @brief Muestra la lista doble de maletas.
- * 
+ *
  */
-/*
+
 void listaDobleMaleta::mostrar() {
     // Explicacion:
     //
     listaDobleMaleta* actual = segundoNodo;
     while (actual) {
-        cout << "Contenido de la maleta: " << actual->contMaleta << endl;
-        cout << "Color de la maaleta: " << actual->colorMaleta << endl;
+        cout << "Maleta: " << actual->maleta.getDescripcion() << endl;
+        cout << "Contenido: " << actual->maleta.getContenido() << endl;
         actual = actual->siguiente;
     }
 }
 
 /**
  * @brief Inserta un nodo al final de la lista doble de maletas.
- * 
+ *
  * @param contMaleta Contenido de la maleta.
  * @param colorMaleta Color de la maleta.
  */
-/*
-void listaDobleMaleta::insertarFinal(string contMaleta,string colorMaleta) {
+
+void listaDobleMaleta::insertarFinal(Maleta maleta) {
     // Explicacion:
     //
-    listaDobleMaleta* nuevoNodo = new listaDobleMaleta(contMaleta,colorMaleta);
+    listaDobleMaleta* nuevoNodo = new listaDobleMaleta(maleta);
     if (!segundoNodo) {
         segundoNodo = nuevoNodo;
     } else {
@@ -242,15 +241,15 @@ void listaDobleMaleta::insertarFinal(string contMaleta,string colorMaleta) {
 
 /**
  * @brief Busca un nodo en la lista doble de maletas.
- * 
+ *
  * @param colorMaleta Color de la maleta.
  * @return listaDobleMaleta* Nodo encontrado.
  */
-/*
-listaDobleMaleta * listaDobleMaleta::buscarMaleta(string colorMaleta) {
+
+listaDobleMaleta * listaDobleMaleta::buscarMaleta(maleta) {
     listaDobleMaleta*aux=segundoNodo;
     while (aux) {
-        if (aux->colorMaleta == colorMaleta)
+        if (aux->maleta.getDescripcion() == maleta.getDescripcion())
             return aux;
         aux = aux->siguiente;
     }
@@ -259,11 +258,11 @@ listaDobleMaleta * listaDobleMaleta::buscarMaleta(string colorMaleta) {
 
 /**
  * @brief Elimina un nodo de la lista doble de maletas.
- * 
+ *
  * @param colorMaleta Color de la maleta.
  */
-/*
-void listaDobleMaleta::Borrar(string colorMaleta) {
+
+void listaDobleMaleta::Borrar(Maleta maleta) {
     // Verificar si la lista está vacía
     if (listaVacia()) {
         cout << "La lista está vacía. No se puede eliminar." << endl;
@@ -274,7 +273,7 @@ void listaDobleMaleta::Borrar(string colorMaleta) {
     bool encontrado = false;
     // Buscar el nodo con el color de maleta dado
     while (actual != nullptr) {
-        if (actual->colorMaleta == colorMaleta) {
+        if (actual->maleta.getDescripcion() == maleta.getDescripcion()) {
             encontrado = true;
             break;
         }
@@ -300,5 +299,5 @@ void listaDobleMaleta::Borrar(string colorMaleta) {
         }
         delete actual;
     }
-    cout << "Color de maleta eliminado: " << colorMaleta << endl;
-} */
+    cout << maleta.getPropietario() << endl;
+}

@@ -12,6 +12,7 @@
 #include <chrono>
 #include <random>
 #include <fstream>
+#include <queue>
 #include "validaciones.h"
 #include "claseAbordaje.h"
 #include "json.hpp"
@@ -103,8 +104,47 @@ Pasajero generarUnPasajero(){
     return pasajero;
 }
 
+// Función para generar pasajeros con maletas y mostrar sus datos
+void generarYMostrarPasajeros(int cantidadPasajeros) {
+    queue<Pasajero> colaPasajeros;
+
+    // Genera la cantidad de pasajeros especificada y encola cada uno
+    for (int i = 0; i < cantidadPasajeros; i++) {
+        Pasajero pasajero = generarUnPasajero();
+        colaPasajeros.push(pasajero);
+    }
+
+    // Muestra los datos de los pasajeros y el contenido de sus maletas al desencolarlos
+    int numeroPasajero = 1;
+    while (!colaPasajeros.empty()) {
+        Pasajero pasajero = colaPasajeros.front();
+
+        // Validar el código de pasaporte
+        bool codigoValido = validarCodigoPasaporte(pasajero.getPasaporte().codigo, pasajero.getPasaporte().nacionalidad, pasajero.getNombre(), pasajero.getEdad());
+
+        // Mostrar datos del pasajero
+        cout << "Datos del Pasajero " << numeroPasajero << ":" << endl;
+        pasajero.mostrarDatos();
+        cout << "Contenido de la Maleta: " << pasajero.getMaleta().getContenido() << endl;
+        cout << "-------------------------------------" << endl;
+
+        if (!codigoValido) {
+            cout << "El pasaporte de " << pasajero.getNombre() << " es erróneo." << endl;
+            // Puedes agregar aquí una lógica adicional, como notificar al pasajero o a las autoridades.
+        }
+
+        colaPasajeros.pop();
+        numeroPasajero++;
+    }
+}
+
+
+
 int main(){
-    vector<Pasajero> pasajeros;
+
+    int limitePasajeros = 10;
+    generarYMostrarPasajeros(limitePasajeros);
+   /* vector<Pasajero> pasajeros;
     
     for (int i = 0; i < 5; i++){
         pasajeros.push_back(generarUnPasajero());
@@ -113,7 +153,7 @@ int main(){
     for (int i = 0; i < 5; i++){
         pasajeros[i].mostrarDatos();
         cout << pasajeros[i].getMaleta().getContenido() << endl;
-    }
+    }*/
 
     
 
