@@ -8,13 +8,15 @@
 #include <iostream>
 #include <string>
 #include <stdio.h>
+#include "clasePasajeros.h"
+#include "claseMaletas.h"
+
 using namespace std;
 
 class ListaDoblePasajero {
     public:
-        string pasaporte;
-        string nacion;
-        string pasajero;// cambiar por clase pasajero
+        Pasajero pasajero;
+        Pasaporte pasaporte = pasajero.getPasaporte();
         ListaDoblePasajero*siguiente;
         ListaDoblePasajero* anterior;
         ListaDoblePasajero *primerNodo;
@@ -26,7 +28,7 @@ class ListaDoblePasajero {
          * @param nacion Nacionalidad del pasajero
          * @param pasajero Nombre completo del pasajero
          */
-        ListaDoblePasajero(string pasaporte,string nacion,string pasajero);
+        ListaDoblePasajero(Pasajero pasajero);
 
         /**
          * @brief Constructor por defecto de la clase ListaDoblePasajero
@@ -47,7 +49,7 @@ class ListaDoblePasajero {
          * @param nacion Nacionalidad del pasajero
          * @param pasajero Nombre completo del pasajero
          */
-        void insertarFinal(string pasaporte,string nacion,string pasajero);
+        void insertarFinal(Pasajero pasajero);
 
         /**
          * @brief Retorna el largo de la lista doble
@@ -62,7 +64,7 @@ class ListaDoblePasajero {
          * @param pasaporte Numero de pasaporte del pasajero a buscar
          * @return ListaDoblePasajero* Puntero al nodo encontrado, o nullptr si no se encuentra
          */
-        ListaDoblePasajero * buscarPasaporte(string pasaporte);
+        ListaDoblePasajero * buscarPasaporte(Pasaporte pasaporte);
 
         /**
          * @brief Muestra los elementos de la lista doble
@@ -75,7 +77,7 @@ class ListaDoblePasajero {
          * 
          * @param pasaporte Numero de pasaporte del pasajero a borrar
          */
-        void Borrar(string pasaporte);
+        void Borrar(Pasaporte pasaporte);
 
         /**
          * @brief Valida si la lista doble se encuentra vacia
@@ -89,32 +91,30 @@ class ListaDoblePasajero {
 
 class listaDobleMaleta{
     public:
-        string contMaleta;
-        string colorMaleta;
+        Maleta maleta;
         listaDobleMaleta*siguiente;
         listaDobleMaleta* anterior;
         listaDobleMaleta *segundoNodo;
-        listaDobleMaleta(string contMaleta,string colorMaleta){
-            this->contMaleta=contMaleta;
-            this->colorMaleta=colorMaleta;
+        listaDobleMaleta(Maleta maleta){
+            this->maleta=maleta;
             siguiente=anterior = NULL;
 
         }
         listaDobleMaleta(); // Constructor
         ~listaDobleMaleta();// Destructor
-        void insertarFinal(string contMaleta,string colorMaleta);
+        void insertarFinal(Maleta maleta);
         // Explicacion:
         // Este metodo se encarga de insertar noticias a final de la lista doble.
         int  largoLista();
         // Explicacion:
         //
-        listaDobleMaleta * buscarMaleta(string colorMaleta);
+        listaDobleMaleta * buscarMaleta();
         // Explicacion:
         //
         void mostrar() ;
         // Explicacion:
         //
-        void Borrar(string colorMaleta);
+        void Borrar();
         // Explicacion:
         //
         bool listaVacia(){return segundoNodo=nullptr;}
