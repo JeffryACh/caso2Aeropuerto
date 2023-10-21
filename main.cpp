@@ -28,6 +28,51 @@ const string CONTENIDO[20] = {"Pistola", "Cuchillo", "Explosivos", "Quimicos pel
 const int MAXIMA_EDAD = 75;
 const int MINIMA_EDAD = 16;
 using json = nlohmann::json;
+
+string sacarPaisesDelJson(json& pJson){
+    json paises = pJson["pasaporte"]["nacionalidad"];
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(0, paises.size() - 1);
+    int indiceAleatorio = dist(gen);
+
+    // Devuelve la nacionalidad aleatoria seleccionada
+    return paises[indiceAleatorio];
+}
+
+string sacarNombreRamdomDelJson(json& pJson){
+    json nombres = pJson["pasajero"]["nombre"];
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(0, nombres.size() - 1);
+    int indiceAleatorio = dist(gen);
+
+    // Devuelve el nombre aleatorio seleccionado
+    return nombres[indiceAleatorio];
+}
+
+string sacarSexoRamdom(json& pJson){
+    json sexos = pJson["pasajero"]["sexo"];
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(0, sexos.size() - 1);
+    int indiceAleatorio = dist(gen);
+
+    // Devuelve el sexo aleatorio seleccionado
+    return sexos[indiceAleatorio];
+}
+
+vector<string> sacarContenidoRamdom(json& pJson){
+    json contenidos = pJson["maleta"]["contenido"];
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(0, contenidos.size() - 1);
+    int indiceAleatorio = dist(gen);
+
+    // Devuelve el contenido aleatorio seleccionado
+    return contenidos[indiceAleatorio];
+}
+
 /**
  * @brief Función que genera un código de pasaporte erróneo para una persona con los parámetros dados.
  * 
@@ -139,12 +184,45 @@ void generarYMostrarPasajeros(int cantidadPasajeros) {
     }
 }
 
+void generarYMostrarMaletas(int cantidadMaletas) {
+    queue<Maleta> colaMaletas;
+
+    // Genera la cantidad de maletas especificada y encola cada una
+    for (int i = 0; i < cantidadMaletas; i++) {
+        Maleta maleta = generarUnPasajero().getMaleta();
+        colaMaletas.push(maleta);
+    }
+
+    // Muestra los datos de las maletas al desencolarlas
+    int numeroMaleta = 1;
+    while (!colaMaletas.empty()) {
+        Maleta maleta = colaMaletas.front();
+        vector<string> contenidoMaleta = maleta.getContenidoVector();
+        bool contenidoValido = validarContenidoMaleta(contenidoMaleta);
+
+        // Mostrar datos de la maleta
+        cout << "Datos de la Maleta " << numeroMaleta << ":" << endl;
+        maleta.getDescripcion();
+        maleta.getContenido();
+        cout << "-------------------------------------" << endl;
+
+        if (!contenidoValido) {
+            cout << "La maleta " << maleta.getDescripcion() << " contiene elementos peligrosos." << endl;
+            // Puedes agregar aquí una lógica adicional, como notificar al pasajero o a las autoridades.
+        }
+
+        colaMaletas.pop();
+        numeroMaleta++;
+    }
+}
+
 
 
 int main(){
 
     int limitePasajeros = 10;
     generarYMostrarPasajeros(limitePasajeros);
+    generarYMostrarMaletas(limitePasajeros);
    /* vector<Pasajero> pasajeros;
     
     for (int i = 0; i < 5; i++){

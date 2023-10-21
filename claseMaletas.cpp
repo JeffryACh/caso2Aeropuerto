@@ -63,3 +63,11 @@ std::string Maleta::getContenido() const {
     }
     return contenido_str;
 }
+
+/**
+ * @brief Retorna el contenido de la maleta como un vector de strings.
+ *
+ * @return std::vector<std::string> Vector con el contenido de la maleta.
+ */
+std::vector<std::string> Maleta::getContenidoVector() const {
+    return this->contenido;

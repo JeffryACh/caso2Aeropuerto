@@ -60,6 +60,12 @@ public:
      * @return std::string Cadena de texto con el contenido de la maleta.
     */
     std::string getContenido() const;
+    /**
+     * @brief Retorna el contenido de la maleta como un vector de strings.
+     * 
+     * @return std::vector<std::string> Vector con el contenido de la maleta.
+    */
+    std::vector<std::string> getContenidoVector() const;
 };
 
 #endif // MALETA_H
