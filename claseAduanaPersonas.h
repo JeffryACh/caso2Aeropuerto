@@ -16,6 +16,7 @@
 #include "claseMaletas.h"
 #include "validaciones.h"
 #include "clasePasajeros.h"
+#include "lobbyEspera.h"
 
 using namespace std;
 

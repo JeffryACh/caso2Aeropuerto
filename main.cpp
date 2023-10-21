@@ -13,7 +13,7 @@
 #include <random>
 #include <fstream>
 #include "validaciones.h"
-#include "clasePasajeros.h"
+#include "claseAbordaje.h"
 #include "json.hpp"
 
 
