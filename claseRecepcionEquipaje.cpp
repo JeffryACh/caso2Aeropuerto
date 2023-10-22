@@ -72,3 +72,33 @@ void RecepcionEquipaje::validarDueñosDeMaletas(const std::vector<Pasajero>& pas
         }
     }
 }
+void RecepcionEquipaje::iniciarRecepcionEquipaje() {
+    while (true) {
+        // Suponemos que hay una cola de maletas en algún lugar que se procesa
+        // en la recepción de equipaje. Vamos a verificar si hay maletas en la cola.
+
+        if (!colaMaletas.empty()) {
+            // Si hay maletas en la cola, la sacamos para procesarla.
+            Maleta maleta = colaMaletas.front();
+            colaMaletas.pop();
+
+            // Verificar el contenido de la maleta
+            std::vector<std::string> contenidoMaleta = maleta.getContenidoVector();
+
+            // Realizar verificaciones, notificaciones, almacenamiento, etc.
+            bool contenidoValido = va(contenidoMaleta);
+
+            if (contenidoValido) {
+                // Si el contenido es válido, se almacena la maleta
+                almacenarMaleta(maleta);
+            } else {
+                // Si el contenido no es válido, tomar acciones específicas.
+                tomarAccionesPorContenidoInvalido(maleta);
+            }
+
+            // Continuar con el procesamiento de otras maletas, si las hay.
+        }
+
+        // Realiza más trabajo relacionado con la recepción de equipaje aquí.
+    }
+}

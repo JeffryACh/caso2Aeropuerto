@@ -15,7 +15,11 @@
 #include <queue>
 #include "validaciones.h"
 #include "claseAbordaje.h"
+#include "lobbyEspera.h"
+#include "AlmMaleta.h"
 #include "json.hpp"
+#include "retencion.h"
+#include "claseRecepcionEquipaje.h"
 
 
 using json = nlohmann::json;
@@ -155,7 +159,6 @@ Pasajero generarUnPasajero(){
 
 // Función para generar pasajeros con maletas y mostrar sus datos
 
-#include "validaciones.h" // Asegúrate de incluir el archivo correcto de validaciones
 void generarYMostrarPasajeros(int cantidadPasajeros) {
     queue<Pasajero> colaPasajeros;
 
@@ -165,7 +168,7 @@ void generarYMostrarPasajeros(int cantidadPasajeros) {
         colaPasajeros.push(pasajero);
     }
 
-    // Muestra los datos de los pasajeros y el contenido de sus maletas al desencolarlos
+    // Muestra los datos de los pasajeros al desencolarlos
     int numeroPasajero = 1;
     while (!colaPasajeros.empty()) {
         Pasajero pasajero = colaPasajeros.front();
@@ -176,7 +179,6 @@ void generarYMostrarPasajeros(int cantidadPasajeros) {
         // Mostrar datos del pasajero
         cout << "Datos del Pasajero " << numeroPasajero << ":" << endl;
         pasajero.mostrarDatos();
-        cout << "Contenido de la Maleta: " << pasajero.getMaleta().getContenido() << endl;
         cout << "-------------------------------------" << endl;
 
         if (!codigoValido) {
@@ -214,6 +216,11 @@ void generarYMostrarMaletas(int cantidadMaletas) {
         if (!contenidoValido) {
             cout << "La maleta " << maleta.getDescripcion() << " contiene elementos peligrosos." << endl;
             // Puedes agregar aquí una lógica adicional, como notificar al pasajero o a las autoridades.
+
+
+
+
+
         }
 
         colaMaletas.pop();
@@ -224,21 +231,25 @@ void generarYMostrarMaletas(int cantidadMaletas) {
 
 
 int main(){
-
+    AlmacenarMaletas almacenMaletas;
     int limitePasajeros = 10;
-    generarYMostrarPasajeros(limitePasajeros);
-    generarYMostrarMaletas(limitePasajeros);
-   /* vector<Pasajero> pasajeros;
 
-    for (int i = 0; i < 5; i++){
-        pasajeros.push_back(generarUnPasajero());
-    }
+    //RecepcionEquipaje recepcionEquipaje;
 
-    for (int i = 0; i < 5; i++){
-        pasajeros[i].mostrarDatos();
-        cout << pasajeros[i].getMaleta().getContenido() << endl;
-    }*/
+    // Crear dos hilos para generar y mostrar pasajeros y maletas en paralelo
+     thread t1(generarYMostrarPasajeros, limitePasajeros);
+     thread t2(generarYMostrarMaletas, limitePasajeros);
+     Personas personas(limitePasajeros);
+     personas.iniciarHilosGeneracion();
+     std::thread tAlmacenarMaletas(almacenarMaletasThread, std::ref(almacenMaletas));
 
+     //Crear un hilo para ejecutar la funcionalidad del Lobby de Espera
+     //personas.iniciarHilosGeneracion();
+     generarYMostrarPasajeros(limitePasajeros);
+     generarYMostrarMaletas(limitePasajeros);
+     //std::thread t(AlmacenarMaletas, std::ref(almacenMaletas));
+     t1.join();
+     t2.join();
     
 
     return 0;

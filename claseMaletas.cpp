@@ -71,3 +71,4 @@ std::string Maleta::getContenido() const {
  */
 std::vector<std::string> Maleta::getContenidoVector() const {
     return this->contenido;
+}

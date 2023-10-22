@@ -8,12 +8,12 @@
 #include "ListaPasajeroMaleta.h"
 // Se usara para el entregable final
 
-/*
+
 ListaDoblePasajero::ListaDoblePasajero() { //Constructor de la lista doble.
     primerNodo = NULL;
 }
 
-
+/*
  * @brief Destructor de la lista doble de pasajeros.
  *
  * Elimina todos los nodos de la lista doble de pasajeros.
@@ -301,4 +301,4 @@ void listaDobleMaleta::Borrar(string colorMaleta) {
         delete actual;
     }
     cout << "Color de maleta eliminado: " << colorMaleta << endl;
-} */
+}*/

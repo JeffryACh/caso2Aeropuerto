@@ -17,6 +17,7 @@
 #include <string>
 #include "AlmMaleta.h"
 #include "claseMaletas.h"
+#include <thread>
 
 /**
  * @brief Clase que representa una maleta en el aeropuerto.
@@ -29,8 +30,8 @@ public:
      * 
      * @param identificacionMaleta Identificación de la maleta.
      */
-    Maletas(std::string& identificacionMaleta);
-    
+    Maletas(char identificacionMaleta);
+
     /**
      * @brief Método que retorna la identificación de la maleta.
      * 
@@ -50,6 +51,8 @@ public:
      * Agrega una maleta al almacenamiento.
      * @param id La maleta a agregar.
      */
+
+    void iniciarAlmacenamientoMaletas();
     void agregarMaleta(Maletas id);
     
     /**
@@ -62,6 +65,7 @@ public:
      * Muestra la cantidad de maletas en el almacenamiento.
      */
     void mostrarCantidadMaletas() const;
+    void almacenarMaletasThread(AlmacenarMaletas& almacenMaletas);
 private:
     std::stack<Maletas> pilaMaletas; /**< Pila de maletas que representa el almacenamiento. */
 };

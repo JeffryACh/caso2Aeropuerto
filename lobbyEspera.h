@@ -5,7 +5,8 @@
 #ifndef CASO2_ED_LOBBYESPERA_H
 #define CASO2_ED_LOBBYESPERA_H
 
-#endif //CASO2_ED_LOBBYESPERA_H
+
+
 #include <iostream>
 #include "clasePasajeros.h"
 
@@ -19,8 +20,9 @@ class Personas {
 private:
     Node* front;
     Node* rear;
-
+    int limitePasajeros;
 public:
+    Personas(int limitePasajeros) : front(nullptr), rear(nullptr), limitePasajeros(limitePasajeros) {}
     Personas();
     ~Personas();
 
@@ -29,4 +31,8 @@ public:
     void display();
     bool isEmpty() const;
     Pasajero getFrontElement() const;
+    void iniciarHilosGeneracion();
+    void generarYMostrarPasajeros(int cantidadPasajeros);
+
 };
+#endif // CASO2_ED_LOBBYESPERA_H

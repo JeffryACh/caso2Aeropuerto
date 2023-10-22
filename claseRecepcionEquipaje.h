@@ -31,7 +31,7 @@ public:
     void vaciarRecepcion();
     void mostrarEquipaje() const;
     void validarDueñosDeMaletas(const std::vector<Pasajero>& pasajeros);
-
+    void iniciarRecepcionEquipaje();
 };
 
 
