@@ -174,28 +174,41 @@ Pasajero generarUnPasajero(json& pJson){
 
 void generarYMostrarPasajeros(int cantidadPasajeros, json& pJson) {
     queue<Pasajero> colaPasajeros;
+    queue<Maleta> colaMaletas;
+
 
     // Genera la cantidad de pasajeros especificada y encola cada uno
     for (int i = 0; i < cantidadPasajeros; i++) {
         Pasajero pasajero = generarUnPasajero(pJson);
         colaPasajeros.push(pasajero);
+        Maleta maleta = generarUnPasajero(pJson).getMaleta();
+        colaMaletas.push(maleta);
     }
 
     // Muestra los datos de los pasajeros al desencolarlos
     int numeroPasajero = 1;
-    while (!colaPasajeros.empty()) {
+    while (!colaPasajeros.empty() && !colaMaletas.empty()) {
         Pasajero pasajero = colaPasajeros.front();
 
         // Validar el código de pasaporte
         bool codigoValido = validarCodigoPasaporte(pasajero.getPasaporte().codigo, pasajero.getPasaporte().nacionalidad, pasajero.getNombre(), pasajero.getEdad());
+        bool contenidoValido = validarContenidoMaleta(pasajero.getMaleta().getContenidoVector());
 
         // Mostrar datos del pasajero
         cout << "Datos del Pasajero " << numeroPasajero << ":" << endl;
         pasajero.mostrarDatos();
         cout << "-------------------------------------" << endl;
 
-        if (!codigoValido) {
+        cout << "Datos de la Maleta " << numeroPasajero << ":" << endl;
+        pasajero.getMaleta().getDescripcion();
+        pasajero.getMaleta().getContenido();
+        cout << "-------------------------------------" << endl;
+
+        
+        if (!codigoValido || !contenidoValido) {
+            cout << "La Maleta " << pasajero.getMaleta().getDescripcion() << " contiene elementos peligrosos." << endl;
             cout << "El pasaporte de " << pasajero.getNombre() << " es erróneo." << endl;
+            Retencion retencion = Retencion(10, 10, 10, pasajero.getMaleta(), pasajero);
             // Puedes agregar aquí una lógica adicional, como notificar al pasajero o a las autoridades.
         }
 
@@ -204,57 +217,20 @@ void generarYMostrarPasajeros(int cantidadPasajeros, json& pJson) {
     }
 }
 
-void generarYMostrarMaletas(int cantidadMaletas, json& pJson) {
-    queue<Maleta> colaMaletas;
-
-    // Genera la cantidad de maletas especificada y encola cada una
-    for (int i = 0; i < cantidadMaletas; i++) {
-        Maleta maleta = generarUnPasajero(pJson).getMaleta();
-        colaMaletas.push(maleta);
-    }
-
-    // Muestra los datos de las maletas al desencolarlas
-    int numeroMaleta = 1;
-    while (!colaMaletas.empty()) {
-        Maleta maleta = colaMaletas.front();
-        vector<string> contenidoMaleta = maleta.getContenidoVector();
-        bool contenidoValido = validarContenidoMaleta(contenidoMaleta);
-
-        // Mostrar datos de la maleta
-        cout << "Datos de la Maleta " << numeroMaleta << ":" << endl;
-        maleta.getDescripcion();
-        maleta.getContenido();
-        cout << "-------------------------------------" << endl;
-
-        if (!contenidoValido) {
-            cout << "La maleta " << maleta.getDescripcion() << " contiene elementos peligrosos." << endl;
-            // Puedes agregar aquí una lógica adicional, como notificar al pasajero o a las autoridades.
-
-
-
-
-
-        }
-
-        colaMaletas.pop();
-        numeroMaleta++;
-    }
-}
-
-
-void procesarGrupoDePasajeros(int inicio, int fin) {
+void procesarGrupoDePasajeros(int inicio, int fin, json& pJson) {
     std::mutex mtx;  // Mutex para bloquear la impresión
     for (int i = inicio; i < fin; i++) {
         {
             std::lock_guard<std::mutex> lock(mtx);  // Bloquear la impresión
-            std::cout << "Procesando pasajero " << i + 1 << std::endl;
+            std::cout << "Procesando pasajero " << i << std::endl;
+            generarYMostrarPasajeros(pasajerosPorGrupo, pJson);
         }
         // Realizar aquí el procesamiento específico para el pasajero i
     }
 }
 
 int main(){
-    vector<thread> hilos;
+    std::vector<std::thread> hilo;
 
     AlmacenarMaletas almacenMaletas;
     int limitePasajeros = 10;
@@ -269,25 +245,13 @@ int main(){
     for (int i = 0; i < totalPasajeros ; i += pasarPorGrupo) {
         int inicio = i;
         int fin = std::min(i + pasarPorGrupo, totalPasajeros);
-        hilos.push_back(std::thread(procesarGrupoDePasajeros, inicio, fin));
+        hilos.push_back(std::thread(procesarGrupoDePasajeros, inicio, fin, std::ref(pJson)));
     }
 
     // Esperar a que todos los hilos terminen
     for (std::thread &hilo : hilos) {
         hilo.join();
     }
-
-    // Sacar volumenTotalDePasajeros 
-    int volumenTotalDePasajeros = pJson["volumenTotalDePasajeros"];
-    cout << "Volumen total de pasajeros: " << volumenTotalDePasajeros << endl;
-
-    for (int i = 0; i < volumenTotalDePasajeros; i++){
-        // sacamos de 10 en 10 los pasajeros
-        for (int j = 0; j < 10; j++){
-            
-        }
-    }
-
     //RecepcionEquipaje recepcionEquipaje;
 
     // Crear dos hilos para generar y mostrar pasajeros y maletas en paralelo
