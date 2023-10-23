@@ -6,7 +6,7 @@
 */
 
 #include "claseZona.h"
-#include "claseMaletas.h"
+#include "claseMaleta.h"
 #include "AlmMaleta.h"
 #include "claseAduanaMaleta.h"
 

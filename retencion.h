@@ -13,7 +13,7 @@
 #define RETENCION_H
 
 #include "claseZona.h"
-#include "claseMaletas.h"
+#include "claseMaleta.h"
 #include "clasePasajero.h"
 
 class Retencion : public Zonas {

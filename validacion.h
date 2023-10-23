@@ -10,7 +10,7 @@
 
 #include <string>
 #include "clasePasajero.h"
-#include "claseMaletas.h"
+#include "claseMaleta.h"
 
 
 /**

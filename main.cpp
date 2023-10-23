@@ -23,7 +23,7 @@
 #include "claseRecepcionEquipaje.h"
 const int totalPasajeros = 100;
 const int pasajerosPorGrupo = 10;
-std::mutex mtx;  // Mutex para asegurarse de que los hilos impriman de manera ordenada
+std::mutex mtx;  // Mutex se usa para asegurarse de que los hilos impriman de manera ordenada
 
 
 using namespace std;
@@ -193,7 +193,7 @@ void generarYMostrarPasajeros(int cantidadPasajeros) {
         numeroPasajero++;
     }
 }
-
+// Función para generar  maletas y mostrar su contenido
 void generarYMostrarMaletas(int cantidadMaletas) {
     queue<Maleta> colaMaletas;
 
@@ -218,7 +218,6 @@ void generarYMostrarMaletas(int cantidadMaletas) {
 
         if (!contenidoValido) {
             cout << "La maleta " << maleta.getDescripcion() << " contiene elementos peligrosos." << endl;
-            // Puedes agregar aquí una lógica adicional, como notificar al pasajero o a las autoridades.
 
 
 

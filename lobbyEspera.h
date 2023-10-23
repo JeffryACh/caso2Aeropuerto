@@ -16,6 +16,8 @@ struct Node {
 
     Node(const Pasajero& pasajero);
 };
+// Constructor de la clase
+
 class Personas {
 private:
     Node* front;
@@ -24,11 +26,16 @@ private:
 public:
     Personas(int limitePasajeros) : front(nullptr), rear(nullptr), limitePasajeros(limitePasajeros) {}
     Personas();
+    // Destructor de la clase
     ~Personas();
-
+    // Declaración de la función que agrega un pasajero a la cola.
     void agregarPasajero(const Pasajero& pasajero);
+    // Declaración de la función que elimina un pasajero de la cola.
     void salidaDePasajero();
+    // Declaración de la función que muestra el contenido de la cola.
     void display();
+    //  Declaración de la función que verifica si la cola está vacía.
+
     bool isEmpty() const;
     Pasajero getFrontElement() const;
     void iniciarHilosGeneracion();

@@ -7,7 +7,7 @@
 
 #include "claseAduanaPersona.h"
 #include "claseZona.h"
-#include "claseMaletas.h"
+#include "claseMaleta.h"
 #include "clasePasajero.h"
 #include "validacion.h"
 
