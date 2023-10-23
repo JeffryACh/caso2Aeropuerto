@@ -186,7 +186,6 @@ void generarYMostrarPasajeros(int cantidadPasajeros) {
 
         if (!codigoValido) {
             cout << "El pasaporte de " << pasajero.getNombre() << " es erróneo." << endl;
-            // Puedes agregar aquí una lógica adicional, como notificar al pasajero o a las autoridades.
         }
 
         colaPasajeros.pop();
@@ -237,7 +236,6 @@ void procesarGrupoDePasajeros(int inicio, int fin) {
             std::lock_guard<std::mutex> lock(mtx);  // Bloquear la impresión
             std::cout << "Procesando pasajero " << i + 1 << std::endl;
         }
-        // Realizar aquí el procesamiento específico para el pasajero i
     }
 }
 
