@@ -5,11 +5,11 @@
     * Last modified on: 08/10/2021 17:20
 */
 
-#include "claseAduanaPersonas.h"
-#include "claseZonas.h"
+#include "claseAduanaPersona.h"
+#include "claseZona.h"
 #include "claseMaletas.h"
-#include "clasePasajeros.h"
-#include "validaciones.h"
+#include "clasePasajero.h"
+#include "validacion.h"
 
 /**
  * Verifica si un pasajero ha sido revisado previamente y realiza una revisión si no ha sido revisado.

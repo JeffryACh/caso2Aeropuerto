@@ -8,7 +8,7 @@
 
 
 #include <iostream>
-#include "clasePasajeros.h"
+#include "clasePasajero.h"
 
 struct Node {
     Pasajero data;

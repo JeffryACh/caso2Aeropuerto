@@ -1,6 +1,6 @@
 
 #include "lobbyEspera.h"
-#include "clasePasajeros.h"
+#include "clasePasajero.h"
 
 Node::Node(const Pasajero& pasajero) : data(pasajero), next(nullptr) {
 }

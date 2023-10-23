@@ -12,9 +12,9 @@
 #ifndef RETENCION_H
 #define RETENCION_H
 
-#include "claseZonas.h"
+#include "claseZona.h"
 #include "claseMaletas.h"
-#include "clasePasajeros.h"
+#include "clasePasajero.h"
 
 class Retencion : public Zonas {
 private:

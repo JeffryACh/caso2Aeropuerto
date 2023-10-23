@@ -10,7 +10,7 @@
 #include <stack>
 #include "claseMaletas.h"
 #include "AlmMaleta.h"
-#include "clasePasajeros.h"
+#include "clasePasajero.h"
 #include "lobbyEspera.h"
 
 class lobbyEspera;

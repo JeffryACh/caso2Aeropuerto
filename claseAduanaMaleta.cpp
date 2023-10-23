@@ -5,12 +5,12 @@
     * Last modified on: 08/10/2021 17:20
 */
 
-#include "claseZonas.h"
+#include "claseZona.h"
 #include "claseMaletas.h"
 #include "AlmMaleta.h"
 #include "claseAduanaMaleta.h"
 
-#include "validaciones.h"
+#include "validacion.h"
 
 /**
  * Constructor de la clase AduanaMaleta.

@@ -9,7 +9,7 @@
 #define VALIDACIONES_H
 
 #include <string>
-#include "clasePasajeros.h"
+#include "clasePasajero.h"
 #include "claseMaletas.h"
 
 

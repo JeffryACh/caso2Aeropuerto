@@ -14,7 +14,7 @@
 #include <fstream>
 #include <queue>
 #include <mutex>
-#include "validaciones.h"
+#include "validacion.h"
 #include "claseAbordaje.h"
 #include "lobbyEspera.h"
 #include "AlmMaleta.h"
@@ -25,7 +25,7 @@ const int totalPasajeros = 100;
 const int pasajerosPorGrupo = 10;
 std::mutex mtx;  // Mutex para asegurarse de que los hilos impriman de manera ordenada
 
-using json = nlohmann::json;
+
 using namespace std;
 
 const string PAISES[15] = {"CRC", "USA", "ESP", "COL", "PAN", "PER", "MEX", "BRA", "ARG", "CHI", "URU", "PAR", "ECU", "BOL", "VEN"};

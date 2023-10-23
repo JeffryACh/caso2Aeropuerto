@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <string>
-#include "validaciones.h"
+#include "validacion.h"
 using namespace std;
 
 

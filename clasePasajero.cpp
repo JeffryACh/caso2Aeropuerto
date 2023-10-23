@@ -5,7 +5,7 @@
     * Last modified on: 08/10/2021 17:20
 */
 
-#include "clasePasajeros.h"
+#include "clasePasajero.h"
 #include "claseMaletas.h"
 
 /**

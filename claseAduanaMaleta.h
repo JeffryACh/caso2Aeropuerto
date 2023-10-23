@@ -11,10 +11,10 @@
 #endif //CASO2_ED_CLASEADUANAMALETA_H
 #ifndef ADUANAMALETAS_H
 #define ADUANAMALETAS_H
-#include "claseAduanaPersonas.h"
+#include "claseAduanaPersona.h"
 #include "claseMaletas.h"
-#include "validaciones.h"
-#include "claseZonas.h"
+#include "validacion.h"
+#include "claseZona.h"
 #include "AlmMaleta.h"
 #include <vector>
 #include <string>

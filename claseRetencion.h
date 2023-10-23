@@ -5,7 +5,7 @@
     * Last modified on: 08/10/2021 17:20
 */
 
-#include "claseZonas.h"
+#include "claseZona.h"
 
 /**
  * @file claseRetencion.h

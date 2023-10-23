@@ -5,16 +5,16 @@
     * Last modified on: 08/10/2021 17:20
 */
 
-#ifndef CASO2_ED_CLASEADUANAPERSONAS_H
-#define CASO2_ED_CLASEADUANAPERSONAS_H
+#ifndef CASO2_ED_CLASEADUANAPERSONA_H
+#define CASO2_ED_CLASEADUANAPERSONA_H
 
 #include <iostream>
 #include <string>
 #include <vector>
 #include <queue>
-#include "claseZonas.h"
-#include "validaciones.h"
-#include "clasePasajeros.h"
+#include "claseZona.h"
+#include "validacion.h"
+#include "clasePasajero.h"
 #include "lobbyEspera.h"
 
 using namespace std;
@@ -64,4 +64,4 @@ public:
      */
     bool realizarRevision(Pasajero pPasajero);
 };
-#endif //CASO2_ED_CLASEADUANAPERSONAS_H
+#endif //CASO2_ED_CLASEADUANAPERSONA_H
