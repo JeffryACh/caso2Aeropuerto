@@ -21,7 +21,9 @@
 #include "json.hpp"
 #include "retencion.h"
 #include "claseRecepcionEquipaje.h"
-
+const int totalPasajeros = 100;
+const int pasajerosPorGrupo = 10;
+std::mutex mtx;  // Mutex para asegurarse de que los hilos impriman de manera ordenada
 
 using json = nlohmann::json;
 using namespace std;
@@ -251,12 +253,12 @@ void procesarGrupoDePasajeros(int inicio, int fin) {
     }
 }
 
-
 int main(){
     vector<thread> hilos;
 
     AlmacenarMaletas almacenMaletas;
     int limitePasajeros = 10;
+    std::vector<std::thread> hilos;
 
     json pJson;
     ifstream i("aeropuerto.json");
