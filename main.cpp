@@ -28,14 +28,6 @@ std::mutex mtx;  // Mutex para asegurarse de que los hilos impriman de manera or
 
 using namespace std;
 
-const string PAISES[15] = {"CRC", "USA", "ESP", "COL", "PAN", "PER", "MEX", "BRA", "ARG", "CHI", "URU", "PAR", "ECU", "BOL", "VEN"};
-const string NOMBRES[15] = {"Jeffry", "Andres", "Juan", "Pedro", "Maria", "Jose", "Luis", "Carlos", "Ana", "Sofia", "Luisa", "Fernanda", "Fernando", "Jorge", "Javier"};
-const string SEXO[2] = {"M", "F"};
-const string CONTENIDO[20] = {"Pistola", "Cuchillo", "Explosivos", "Quimicos peligrosos", "Drogas", "Ropa", "Zapatos", "Laptop", "Tablet", "Audifonos", "Cargador", "Billetera", "Dinero", "Pasaporte", "Maquillaje", "Cepillo de dientes", "Cepillo de cabello", "Cuaderno", "Libro", "Lapicero"};
-const int MAXIMA_EDAD = 75;
-const int MINIMA_EDAD = 16;
-using json = nlohmann::json;
-
 string sacarPaisesDelJson(json& pJson){
     json paises = pJson["pasaporte"]["nacionalidad"];
     std::random_device rd;
@@ -80,6 +72,16 @@ vector<string> sacarContenidoRamdom(json& pJson){
     return contenidos[indiceAleatorio];
 }
 
+int sacarEdadRandom(json& pJson){
+    int edadeMin = pJson["pasajero"]["minEdad"];
+    int edadeMax = pJson["pasajero"]["maxEdad"];
+
+    int edad = rand() % (edadeMax - edadeMin + 1) + edadeMin;
+
+    // Devuelve la edad aleatoria seleccionada
+    return edad;
+}
+
 /**
  * @brief Función que genera un código de pasaporte erróneo para una persona con los parámetros dados.
  * 
@@ -88,16 +90,16 @@ vector<string> sacarContenidoRamdom(json& pJson){
  * @param pEdad La edad de la persona.
  * @return Un string con el código de pasaporte erróneo generado.
  */
-string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int pEdad){;
+string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int pEdad, json& pJson){;
     bool codigoValido = false;
 
     string codigoErroneo = "";
 
     while(!codigoValido){
         codigoErroneo = "";
-        codigoErroneo += PAISES[rand() % 15];
-        codigoErroneo += NOMBRES[rand() % 15];
-        codigoErroneo += to_string(rand() % (MAXIMA_EDAD - MINIMA_EDAD + 1) + MINIMA_EDAD);
+        codigoErroneo += sacarPaisesDelJson(pJson);
+        codigoErroneo += sacarNombreRamdomDelJson(pJson).substr(0,3);
+        codigoErroneo += to_string(sacarEdadRandom(pJson));
         for (int i = 0; i < 6; i++){
             codigoErroneo += to_string(rand() % 10);
         }
@@ -131,11 +133,11 @@ string generadorDePasaportes(string pNacionalidad, string pNombre, int pEdad){
  * Función que genera un objeto de tipo Pasajero con datos aleatorios.
  * @return Pasajero objeto generado con datos aleatorios.
  */
-Pasajero generarUnPasajero(){
-    string nombre = NOMBRES[rand() % 15].substr(0,3);
-    int edad = rand() % (MAXIMA_EDAD - MINIMA_EDAD + 1) + MINIMA_EDAD;
-    string nacionalidad = PAISES[rand() % 15];
-    string sexo = SEXO[rand() % 2];
+Pasajero generarUnPasajero(json& pJson){
+    string nombre = sacarNombreRamdomDelJson(pJson).substr(0,3);
+    int edad = sacarEdadRandom(pJson);
+    string nacionalidad = sacarPaisesDelJson(pJson);
+    string sexo = sacarSexoRamdom(pJson);
     int ruletaCodigo = rand() % 2; // Si sale 1 el codigo sera erroneo y si sale 0 sera correcto
 
     cout<<ruletaCodigo<<endl;
@@ -143,14 +145,12 @@ Pasajero generarUnPasajero(){
     cout << "Ruleta: " << ruletaCodigo << endl;
     string codigoPasaporte;
     if (ruletaCodigo == 1){
-        codigoPasaporte = generadorDePasaportesErroneos(nacionalidad, nombre, edad);
+        codigoPasaporte = generadorDePasaportesErroneos(nacionalidad, nombre, edad, pJson);
     } else {  
         codigoPasaporte = generadorDePasaportes(nacionalidad, nombre, edad);
     };
     vector <string> contenidoMaleta;
-    for (int i = 0; i < 5; i++){
-        contenidoMaleta.push_back(CONTENIDO[rand() % 20]);
-    };
+    contenidoMaleta = sacarContenidoRamdom(pJson);
     int peso = rand() % 20 + 1;
     string descripcion = "Maleta de " + nombre;
     string propietario = nombre;
@@ -162,30 +162,43 @@ Pasajero generarUnPasajero(){
 
 // Función para generar pasajeros con maletas y mostrar sus datos
 
-void generarYMostrarPasajeros(int cantidadPasajeros) {
+void generarYMostrarPasajeros(int cantidadPasajeros, json& pJson) {
     queue<Pasajero> colaPasajeros;
+    queue<Maleta> colaMaletas;
+
 
     // Genera la cantidad de pasajeros especificada y encola cada uno
     for (int i = 0; i < cantidadPasajeros; i++) {
-        Pasajero pasajero = generarUnPasajero();
+        Pasajero pasajero = generarUnPasajero(pJson);
         colaPasajeros.push(pasajero);
+        Maleta maleta = generarUnPasajero(pJson).getMaleta();
+        colaMaletas.push(maleta);
     }
 
     // Muestra los datos de los pasajeros al desencolarlos
     int numeroPasajero = 1;
-    while (!colaPasajeros.empty()) {
+    while (!colaPasajeros.empty() && !colaMaletas.empty()) {
         Pasajero pasajero = colaPasajeros.front();
 
         // Validar el código de pasaporte
         bool codigoValido = validarCodigoPasaporte(pasajero.getPasaporte().codigo, pasajero.getPasaporte().nacionalidad, pasajero.getNombre(), pasajero.getEdad());
+        bool contenidoValido = validarContenidoMaleta(pasajero.getMaleta().getContenidoVector());
 
         // Mostrar datos del pasajero
         cout << "Datos del Pasajero " << numeroPasajero << ":" << endl;
         pasajero.mostrarDatos();
         cout << "-------------------------------------" << endl;
 
-        if (!codigoValido) {
+        cout << "Datos de la Maleta " << numeroPasajero << ":" << endl;
+        pasajero.getMaleta().getDescripcion();
+        pasajero.getMaleta().getContenido();
+        cout << "-------------------------------------" << endl;
+
+        
+        if (!codigoValido || !contenidoValido) {
+            cout << "La Maleta " << pasajero.getMaleta().getDescripcion() << " contiene elementos peligrosos." << endl;
             cout << "El pasaporte de " << pasajero.getNombre() << " es erróneo." << endl;
+            Retencion retencion = Retencion(10, 10, 10, pasajero.getMaleta(), pasajero);
             // Puedes agregar aquí una lógica adicional, como notificar al pasajero o a las autoridades.
         }
 
@@ -194,87 +207,41 @@ void generarYMostrarPasajeros(int cantidadPasajeros) {
     }
 }
 
-void generarYMostrarMaletas(int cantidadMaletas) {
-    queue<Maleta> colaMaletas;
-
-    // Genera la cantidad de maletas especificada y encola cada una
-    for (int i = 0; i < cantidadMaletas; i++) {
-        Maleta maleta = generarUnPasajero().getMaleta();
-        colaMaletas.push(maleta);
-    }
-
-    // Muestra los datos de las maletas al desencolarlas
-    int numeroMaleta = 1;
-    while (!colaMaletas.empty()) {
-        Maleta maleta = colaMaletas.front();
-        vector<string> contenidoMaleta = maleta.getContenidoVector();
-        bool contenidoValido = validarContenidoMaleta(contenidoMaleta);
-
-        // Mostrar datos de la maleta
-        cout << "Datos de la Maleta " << numeroMaleta << ":" << endl;
-        maleta.getDescripcion();
-        maleta.getContenido();
-        cout << "-------------------------------------" << endl;
-
-        if (!contenidoValido) {
-            cout << "La maleta " << maleta.getDescripcion() << " contiene elementos peligrosos." << endl;
-            // Puedes agregar aquí una lógica adicional, como notificar al pasajero o a las autoridades.
-
-
-
-
-
-        }
-
-        colaMaletas.pop();
-        numeroMaleta++;
-    }
-}
-
-
-void procesarGrupoDePasajeros(int inicio, int fin) {
+void procesarGrupoDePasajeros(int inicio, int fin, json& pJson) {
+    std::mutex mtx;  // Mutex para bloquear la impresión
     for (int i = inicio; i < fin; i++) {
         {
             std::lock_guard<std::mutex> lock(mtx);  // Bloquear la impresión
-            std::cout << "Procesando pasajero " << i + 1 << std::endl;
+            std::cout << "Procesando pasajero " << i << std::endl;
+            generarYMostrarPasajeros(pasajerosPorGrupo, pJson);
         }
         // Realizar aquí el procesamiento específico para el pasajero i
     }
 }
 
 int main(){
+    std::vector<std::thread> hilo;
+
     AlmacenarMaletas almacenMaletas;
     int limitePasajeros = 10;
     std::vector<std::thread> hilos;
 
-    for (int i = 0; i < totalPasajeros; i += pasajerosPorGrupo) {
+    json pJson;
+    ifstream i("aeropuerto.json");
+    i >> pJson;
+    int totalPasajeros = pJson["totalPasajeros"];
+    int pasarPorGrupo = 10;
+
+    for (int i = 0; i < totalPasajeros ; i += pasarPorGrupo) {
         int inicio = i;
-        int fin = std::min(i + pasajerosPorGrupo, totalPasajeros);
-        hilos.push_back(std::thread(procesarGrupoDePasajeros, inicio, fin));
+        int fin = std::min(i + pasarPorGrupo, totalPasajeros);
+        hilos.push_back(std::thread(procesarGrupoDePasajeros, inicio, fin, std::ref(pJson)));
     }
 
     // Esperar a que todos los hilos terminen
     for (std::thread &hilo : hilos) {
         hilo.join();
     }
-    //RecepcionEquipaje recepcionEquipaje;
-
-    // Crear dos hilos para generar y mostrar pasajeros y maletas en paralelo
-     thread t1(generarYMostrarPasajeros, limitePasajeros);
-     thread t2(generarYMostrarMaletas, limitePasajeros);
-     Personas personas(limitePasajeros);
-     personas.iniciarHilosGeneracion();
-     //std::thread tAlmacenarMaletas(almacenarMaletasThread, std::ref(almacenMaletas));
-     //std::thread hiloRecepcionEquipaje(&RecepcionEquipaje::iniciarRecepcionEquipaje, &RecepcionEquipaje);
-
-
-    //Crear un hilo para ejecutar la funcionalidad del Lobby de Espera
-     //personas.iniciarHilosGeneracion();
-     generarYMostrarPasajeros(limitePasajeros);
-     generarYMostrarMaletas(limitePasajeros);
-     //std::thread t(AlmacenarMaletas, std::ref(almacenMaletas));
-     t1.join();
-     t2.join();
     
 
     return 0;
