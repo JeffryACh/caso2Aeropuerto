@@ -28,14 +28,6 @@ std::mutex mtx;  // Mutex para asegurarse de que los hilos impriman de manera or
 using json = nlohmann::json;
 using namespace std;
 
-const string PAISES[15] = {"CRC", "USA", "ESP", "COL", "PAN", "PER", "MEX", "BRA", "ARG", "CHI", "URU", "PAR", "ECU", "BOL", "VEN"};
-const string NOMBRES[15] = {"Jeffry", "Andres", "Juan", "Pedro", "Maria", "Jose", "Luis", "Carlos", "Ana", "Sofia", "Luisa", "Fernanda", "Fernando", "Jorge", "Javier"};
-const string SEXO[2] = {"M", "F"};
-const string CONTENIDO[20] = {"Pistola", "Cuchillo", "Explosivos", "Quimicos peligrosos", "Drogas", "Ropa", "Zapatos", "Laptop", "Tablet", "Audifonos", "Cargador", "Billetera", "Dinero", "Pasaporte", "Maquillaje", "Cepillo de dientes", "Cepillo de cabello", "Cuaderno", "Libro", "Lapicero"};
-const int MAXIMA_EDAD = 75;
-const int MINIMA_EDAD = 16;
-using json = nlohmann::json;
-
 string sacarPaisesDelJson(json& pJson){
     json paises = pJson["pasaporte"]["nacionalidad"];
     std::random_device rd;
@@ -105,8 +97,8 @@ string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int p
 
     while(!codigoValido){
         codigoErroneo = "";
-        codigoErroneo += PAISES[rand() % 15];
-        codigoErroneo += NOMBRES[rand() % 15];
+        codigoErroneo += sacarPaisesDelJson(pJson);
+        codigoErroneo += sacarNombreRamdomDelJson(pJson).substr(0,3);
         codigoErroneo += to_string(sacarEdadRandom(pJson));
         for (int i = 0; i < 6; i++){
             codigoErroneo += to_string(rand() % 10);
@@ -142,10 +134,10 @@ string generadorDePasaportes(string pNacionalidad, string pNombre, int pEdad){
  * @return Pasajero objeto generado con datos aleatorios.
  */
 Pasajero generarUnPasajero(json& pJson){
-    string nombre = NOMBRES[rand() % 15].substr(0,3);
-    int edad = rand() % (MAXIMA_EDAD - MINIMA_EDAD + 1) + MINIMA_EDAD;
-    string nacionalidad = PAISES[rand() % 15];
-    string sexo = SEXO[rand() % 2];
+    string nombre = sacarNombreRamdomDelJson(pJson).substr(0,3);
+    int edad = sacarEdadRandom(pJson);
+    string nacionalidad = sacarPaisesDelJson(pJson);
+    string sexo = sacarSexoRamdom(pJson);
     int ruletaCodigo = rand() % 2; // Si sale 1 el codigo sera erroneo y si sale 0 sera correcto
 
     cout<<ruletaCodigo<<endl;
@@ -158,9 +150,7 @@ Pasajero generarUnPasajero(json& pJson){
         codigoPasaporte = generadorDePasaportes(nacionalidad, nombre, edad);
     };
     vector <string> contenidoMaleta;
-    for (int i = 0; i < 5; i++){
-        contenidoMaleta.push_back(CONTENIDO[rand() % 20]);
-    };
+    contenidoMaleta = sacarContenidoRamdom(pJson);
     int peso = rand() % 20 + 1;
     string descripcion = "Maleta de " + nombre;
     string propietario = nombre;
@@ -252,18 +242,6 @@ int main(){
     for (std::thread &hilo : hilos) {
         hilo.join();
     }
-    //RecepcionEquipaje recepcionEquipaje;
-
-    // Crear dos hilos para generar y mostrar pasajeros y maletas en paralelo
-    // thread t1(generarYMostrarPasajeros, limitePasajeros);
-    // thread t2(generarYMostrarMaletas, limitePasajeros);
-    // Personas personas(limitePasajeros);
-    // personas.iniciarHilosGeneracion();
-    // std::thread tAlmacenarMaletas(almacenarMaletasThread, std::ref(almacenMaletas));
-     //std::thread t(AlmacenarMaletas, std::ref(almacenMaletas));
-    // t1.join();
-    // t2.join();
-    // tAlmacenarMaletas.join();
     
 
     return 0;
