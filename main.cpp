@@ -13,6 +13,7 @@
 #include <random>
 #include <fstream>
 #include <queue>
+#include <mutex>
 #include "validaciones.h"
 #include "claseAbordaje.h"
 #include "lobbyEspera.h"
@@ -77,6 +78,16 @@ vector<string> sacarContenidoRamdom(json& pJson){
     return contenidos[indiceAleatorio];
 }
 
+int sacarEdadRandom(json& pJson){
+    int edadeMin = pJson["pasajero"]["minEdad"];
+    int edadeMax = pJson["pasajero"]["maxEdad"];
+
+    int edad = rand() % (edadeMax - edadeMin + 1) + edadeMin;
+
+    // Devuelve la edad aleatoria seleccionada
+    return edad;
+}
+
 /**
  * @brief Función que genera un código de pasaporte erróneo para una persona con los parámetros dados.
  * 
@@ -85,7 +96,7 @@ vector<string> sacarContenidoRamdom(json& pJson){
  * @param pEdad La edad de la persona.
  * @return Un string con el código de pasaporte erróneo generado.
  */
-string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int pEdad){;
+string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int pEdad, json& pJson){;
     bool codigoValido = false;
 
     string codigoErroneo = "";
@@ -94,7 +105,7 @@ string generadorDePasaportesErroneos(string pNacionalidad, string pNombre, int p
         codigoErroneo = "";
         codigoErroneo += PAISES[rand() % 15];
         codigoErroneo += NOMBRES[rand() % 15];
-        codigoErroneo += to_string(rand() % (MAXIMA_EDAD - MINIMA_EDAD + 1) + MINIMA_EDAD);
+        codigoErroneo += to_string(sacarEdadRandom(pJson));
         for (int i = 0; i < 6; i++){
             codigoErroneo += to_string(rand() % 10);
         }
@@ -128,7 +139,7 @@ string generadorDePasaportes(string pNacionalidad, string pNombre, int pEdad){
  * Función que genera un objeto de tipo Pasajero con datos aleatorios.
  * @return Pasajero objeto generado con datos aleatorios.
  */
-Pasajero generarUnPasajero(){
+Pasajero generarUnPasajero(json& pJson){
     string nombre = NOMBRES[rand() % 15].substr(0,3);
     int edad = rand() % (MAXIMA_EDAD - MINIMA_EDAD + 1) + MINIMA_EDAD;
     string nacionalidad = PAISES[rand() % 15];
@@ -140,7 +151,7 @@ Pasajero generarUnPasajero(){
     cout << "Ruleta: " << ruletaCodigo << endl;
     string codigoPasaporte;
     if (ruletaCodigo == 1){
-        codigoPasaporte = generadorDePasaportesErroneos(nacionalidad, nombre, edad);
+        codigoPasaporte = generadorDePasaportesErroneos(nacionalidad, nombre, edad, pJson);
     } else {  
         codigoPasaporte = generadorDePasaportes(nacionalidad, nombre, edad);
     };
@@ -159,12 +170,12 @@ Pasajero generarUnPasajero(){
 
 // Función para generar pasajeros con maletas y mostrar sus datos
 
-void generarYMostrarPasajeros(int cantidadPasajeros) {
+void generarYMostrarPasajeros(int cantidadPasajeros, json& pJson) {
     queue<Pasajero> colaPasajeros;
 
     // Genera la cantidad de pasajeros especificada y encola cada uno
     for (int i = 0; i < cantidadPasajeros; i++) {
-        Pasajero pasajero = generarUnPasajero();
+        Pasajero pasajero = generarUnPasajero(pJson);
         colaPasajeros.push(pasajero);
     }
 
@@ -191,12 +202,12 @@ void generarYMostrarPasajeros(int cantidadPasajeros) {
     }
 }
 
-void generarYMostrarMaletas(int cantidadMaletas) {
+void generarYMostrarMaletas(int cantidadMaletas, json& pJson) {
     queue<Maleta> colaMaletas;
 
     // Genera la cantidad de maletas especificada y encola cada una
     for (int i = 0; i < cantidadMaletas; i++) {
-        Maleta maleta = generarUnPasajero().getMaleta();
+        Maleta maleta = generarUnPasajero(pJson).getMaleta();
         colaMaletas.push(maleta);
     }
 
@@ -229,27 +240,64 @@ void generarYMostrarMaletas(int cantidadMaletas) {
 }
 
 
+void procesarGrupoDePasajeros(int inicio, int fin) {
+    std::mutex mtx;  // Mutex para bloquear la impresión
+    for (int i = inicio; i < fin; i++) {
+        {
+            std::lock_guard<std::mutex> lock(mtx);  // Bloquear la impresión
+            std::cout << "Procesando pasajero " << i + 1 << std::endl;
+        }
+        // Realizar aquí el procesamiento específico para el pasajero i
+    }
+}
+
 
 int main(){
+    vector<thread> hilos;
+
     AlmacenarMaletas almacenMaletas;
     int limitePasajeros = 10;
+
+    json pJson;
+    ifstream i("aeropuerto.json");
+    i >> pJson;
+    int totalPasajeros = pJson["totalPasajeros"];
+    int pasarPorGrupo = 10;
+
+    for (int i = 0; i < totalPasajeros ; i += pasarPorGrupo) {
+        int inicio = i;
+        int fin = std::min(i + pasarPorGrupo, totalPasajeros);
+        hilos.push_back(std::thread(procesarGrupoDePasajeros, inicio, fin));
+    }
+
+    // Esperar a que todos los hilos terminen
+    for (std::thread &hilo : hilos) {
+        hilo.join();
+    }
+
+    // Sacar volumenTotalDePasajeros 
+    int volumenTotalDePasajeros = pJson["volumenTotalDePasajeros"];
+    cout << "Volumen total de pasajeros: " << volumenTotalDePasajeros << endl;
+
+    for (int i = 0; i < volumenTotalDePasajeros; i++){
+        // sacamos de 10 en 10 los pasajeros
+        for (int j = 0; j < 10; j++){
+            
+        }
+    }
 
     //RecepcionEquipaje recepcionEquipaje;
 
     // Crear dos hilos para generar y mostrar pasajeros y maletas en paralelo
-     thread t1(generarYMostrarPasajeros, limitePasajeros);
-     thread t2(generarYMostrarMaletas, limitePasajeros);
-     Personas personas(limitePasajeros);
-     personas.iniciarHilosGeneracion();
-     std::thread tAlmacenarMaletas(almacenarMaletasThread, std::ref(almacenMaletas));
-
-     //Crear un hilo para ejecutar la funcionalidad del Lobby de Espera
-     //personas.iniciarHilosGeneracion();
-     generarYMostrarPasajeros(limitePasajeros);
-     generarYMostrarMaletas(limitePasajeros);
+    // thread t1(generarYMostrarPasajeros, limitePasajeros);
+    // thread t2(generarYMostrarMaletas, limitePasajeros);
+    // Personas personas(limitePasajeros);
+    // personas.iniciarHilosGeneracion();
+    // std::thread tAlmacenarMaletas(almacenarMaletasThread, std::ref(almacenMaletas));
      //std::thread t(AlmacenarMaletas, std::ref(almacenMaletas));
-     t1.join();
-     t2.join();
+    // t1.join();
+    // t2.join();
+    // tAlmacenarMaletas.join();
     
 
     return 0;
