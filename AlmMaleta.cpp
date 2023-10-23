@@ -66,5 +66,7 @@ void almacenarMaletasThread(AlmacenarMaletas& almacenMaletas) {
         Maletas maleta(i);  // Supongamos que el constructor de Maletas recibe un número de identificación
         almacenMaletas.agregarMaleta(maleta);
         std::cout << "Maleta " << i << " almacenada." << std::endl;
+
+
     }
 }

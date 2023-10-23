@@ -13,6 +13,7 @@
 #include <random>
 #include <fstream>
 #include <queue>
+#include <mutex>
 #include "validaciones.h"
 #include "claseAbordaje.h"
 #include "lobbyEspera.h"
@@ -20,7 +21,9 @@
 #include "json.hpp"
 #include "retencion.h"
 #include "claseRecepcionEquipaje.h"
-
+const int totalPasajeros = 100;
+const int pasajerosPorGrupo = 10;
+std::mutex mtx;  // Mutex para asegurarse de que los hilos impriman de manera ordenada
 
 using json = nlohmann::json;
 using namespace std;
@@ -229,11 +232,31 @@ void generarYMostrarMaletas(int cantidadMaletas) {
 }
 
 
+void procesarGrupoDePasajeros(int inicio, int fin) {
+    for (int i = inicio; i < fin; i++) {
+        {
+            std::lock_guard<std::mutex> lock(mtx);  // Bloquear la impresión
+            std::cout << "Procesando pasajero " << i + 1 << std::endl;
+        }
+        // Realizar aquí el procesamiento específico para el pasajero i
+    }
+}
 
 int main(){
     AlmacenarMaletas almacenMaletas;
     int limitePasajeros = 10;
+    std::vector<std::thread> hilos;
 
+    for (int i = 0; i < totalPasajeros; i += pasajerosPorGrupo) {
+        int inicio = i;
+        int fin = std::min(i + pasajerosPorGrupo, totalPasajeros);
+        hilos.push_back(std::thread(procesarGrupoDePasajeros, inicio, fin));
+    }
+
+    // Esperar a que todos los hilos terminen
+    for (std::thread &hilo : hilos) {
+        hilo.join();
+    }
     //RecepcionEquipaje recepcionEquipaje;
 
     // Crear dos hilos para generar y mostrar pasajeros y maletas en paralelo
@@ -241,9 +264,11 @@ int main(){
      thread t2(generarYMostrarMaletas, limitePasajeros);
      Personas personas(limitePasajeros);
      personas.iniciarHilosGeneracion();
-     std::thread tAlmacenarMaletas(almacenarMaletasThread, std::ref(almacenMaletas));
+     //std::thread tAlmacenarMaletas(almacenarMaletasThread, std::ref(almacenMaletas));
+     //std::thread hiloRecepcionEquipaje(&RecepcionEquipaje::iniciarRecepcionEquipaje, &RecepcionEquipaje);
 
-     //Crear un hilo para ejecutar la funcionalidad del Lobby de Espera
+
+    //Crear un hilo para ejecutar la funcionalidad del Lobby de Espera
      //personas.iniciarHilosGeneracion();
      generarYMostrarPasajeros(limitePasajeros);
      generarYMostrarMaletas(limitePasajeros);
